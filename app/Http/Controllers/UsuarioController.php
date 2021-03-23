@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\User;
+use App\Models\Imagen;
+use App\Models\Role;
 
 class UsuarioController extends Controller
 {
@@ -13,9 +17,10 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        //
+        $usuarios = User::all();
+        return view("admin.usuarios.index",compact("usuarios"));
     }
-
+ 
     /**
      * Show the form for creating a new resource.
      *
@@ -23,7 +28,8 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Role::all();
+        return view("admin.usuarios.create",compact("roles"));
     }
 
     /**
@@ -34,7 +40,22 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $entrada = $request->all();
+
+        if($archivo = $request->file('imagen_id')){//Si hay imagen
+            $nombre = $archivo->getClientOriginalName();
+            $archivo->move('images',$nombre);
+            $imagen = Imagen::create(['url' => $nombre, 'tipo' => 'usuario']);
+
+            $entrada['imagen_id'] = $imagen->id;
+
+        }
+
+        $entrada['password'] = bcrypt($request->password); //Encriptando contraseña
+        User::create($entrada);
+
+
+        return redirect()->route('usuarios.index');
     }
 
     /**
@@ -56,7 +77,9 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $usuario = User::findOrFail($id);
+        $roles = Role::all();
+        return view("admin.usuarios.edit", compact("usuario","roles"));
     }
 
     /**
@@ -68,7 +91,24 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $usuario = User::findOrFail($id);
+
+        $entrada = $request->all();
+
+        if($archivo = $request->file('imagen_id')){//Si hay foto
+            $nombre = $archivo->getClientOriginalName();
+            $archivo->move('images',$nombre);
+            $imagen = Imagen::create(['url' => $nombre, 'tipo' => 'usuario']);
+
+            $entrada['imagen_id'] = $imagen->id;
+
+        }
+
+        $usuario->update($entrada);
+
+        
+        return redirect()->route('usuarios.index');
+
     }
 
     /**
@@ -79,6 +119,9 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $usuario = User::findOrFail($id);
+        $usuario->delete();
+
+        return redirect()->route('usuarios.index');
     }
 }

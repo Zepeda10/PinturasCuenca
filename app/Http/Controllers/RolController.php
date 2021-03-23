@@ -76,9 +76,10 @@ class RolController extends Controller
     public function update(Request $request, $id)
     {
         $rol = Role::findOrFail($id);
+        echo $rol;
         $rol->update($request->all());
 
-         return redirect()->route('roles.index');
+        return redirect()->route('roles.index');
     }
 
     /**
