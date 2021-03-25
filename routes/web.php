@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\CategoriaController;
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,8 @@ use App\Http\Controllers\CategoriaController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('admin/proveedores',ProveedorController::class);
 
 Route::resource('admin/categorias',CategoriaController::class);
 
