@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Role;
+use App\Models\Categoria;
 
-class RolController extends Controller
+class CategoriaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class RolController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
-        return view("admin.roles.index",compact("roles")); 
+        $categorias = Categoria::all();
+        return view("admin.categorias.index",compact("categorias")); 
     }
 
     /**
@@ -25,7 +25,7 @@ class RolController extends Controller
      */
     public function create()
     {
-        return view("admin.roles.create");
+        return view("admin.categorias.create");
     }
 
     /**
@@ -36,11 +36,11 @@ class RolController extends Controller
      */
     public function store(Request $request)
     {
-        $rol = new Role();
-        $rol->rol = $request->rol;
-        $rol->save();
+        $categoria = new Categoria();
+        $categoria->categoria = $request->categoria;
+        $categoria->save();
 
-        return redirect()->route('roles.index');
+        return redirect()->route('categorias.index');
     }
 
     /**
@@ -62,8 +62,8 @@ class RolController extends Controller
      */
     public function edit($id)
     {
-        $rol = Role::findOrFail($id);
-        return view("admin.roles.edit", compact("rol"));
+        $categoria = Categoria::findOrFail($id);
+        return view("admin.categorias.edit", compact("categoria"));
     }
 
     /**
@@ -75,11 +75,11 @@ class RolController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $rol = Role::findOrFail($id);
-        echo $rol;
-        $rol->update($request->all());
+        $categoria = Categoria::findOrFail($id);
+        echo $categoria;
+        $categoria->update($request->all());
 
-        return redirect()->route('roles.index');
+        return redirect()->route('categorias.index');
     }
 
     /**
@@ -90,9 +90,9 @@ class RolController extends Controller
      */
     public function destroy($id)
     {
-        $rol = Role::findOrFail($id);
-        $rol->delete();
+        $categoria = Categoria::findOrFail($id);
+        $categoria->delete();
 
-        return redirect()->route('roles.index');
+        return redirect()->route('categorias.index');
     }
 }

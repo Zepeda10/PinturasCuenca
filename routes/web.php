@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\CategoriaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +18,8 @@ use App\Http\Controllers\UsuarioController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('admin/categorias',CategoriaController::class);
 
 Route::resource('admin/roles',RolController::class);
 
