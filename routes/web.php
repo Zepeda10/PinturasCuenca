@@ -3,8 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\CategoriaController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +21,8 @@ use App\Http\Controllers\CategoriaController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('admin/productos',ProductoController::class);
 
 Route::resource('admin/proveedores',ProveedorController::class);
 

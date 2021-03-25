@@ -15,6 +15,9 @@ class Producto extends Model
                             'stock',
                             'precio_compra',
                             'precio_venta',
+                            'imagen_id',
+                            'categoria_id',
+                            'proveedor_id',
                             'iva'];
 
     //Relación uno a muchos inversa

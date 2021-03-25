@@ -17,11 +17,11 @@
 		<label for="">Tipo</label>
 		<select name="role_id">
 			@foreach($roles as $rol)
-			<option value="{{ $rol->id }}">{{ $rol->rol }}</option>}
+			<option value="{{ $rol->id }}">{{ $rol->rol }}</option>
 			@endforeach
 		</select>
 		
-		<label  for="imagen_id">Foto:<label>
+		<label for="imagen_id">Foto:<label>
 		<input name="imagen_id" type="file">
 		<input type="submit" name="enviar" value="Añadir">
 	</form>
