@@ -12,10 +12,21 @@ class ProveedorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $proveedores = Proveedor::all();
+        if($request){
+            $buscar = trim($request->get('buscar'));
+            $proveedores = Proveedor::where('nombre', 'LIKE', '%'.$buscar.'%')
+                        ->orWhere('rfc', 'LIKE', '%'.$buscar.'%')
+                        ->orderBy('id','asc')
+                        ->paginate(2);
+
+            return view("admin.proveedores.index",compact("proveedores","buscar"));
+        }
+        /*
+        $proveedores = Proveedor::paginate(5);
         return view("admin.proveedores.index",compact("proveedores"));
+        */
     }
 
     /**
@@ -55,7 +66,8 @@ class ProveedorController extends Controller
      */
     public function show($id)
     {
-        //
+        $proveedor = Proveedor::findOrFail($id);
+        return view("admin.proveedores.show",compact("proveedor"));
     }
 
     /**

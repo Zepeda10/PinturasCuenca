@@ -16,9 +16,10 @@ class UsuarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $usuarios = User::all();
+    {       
+        $usuarios = User::paginate(5); 
         return view("admin.usuarios.index",compact("usuarios"));
+        
     }
  
     /**
@@ -66,7 +67,8 @@ class UsuarioController extends Controller
      */
     public function show($id)
     {
-        //
+        $usuario = User::findOrFail($id);
+        return view("admin.usuarios.show",compact("usuario"));
     }
 
     /**
@@ -123,5 +125,17 @@ class UsuarioController extends Controller
         $usuario->delete();
 
         return redirect()->route('usuarios.index');
+    }
+
+    public function search(Request $request)
+    {
+        //$usuario = User::where('usuario', 'LIKE', '%'.$request->search.'%')->get();
+        $usuario = DB::table('users')
+            ->join('roles', 'users.role_id', '=', 'roles.id')
+            ->select('users.*', 'roles.rol')
+            ->where('usuario', 'LIKE', '%'.$request->search.'%')
+            ->orWhere('roles.rol', 'LIKE', '%'.$request->search.'%') 
+            ->get();
+        return \response()->json($usuario);
     }
 }

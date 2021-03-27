@@ -6,6 +6,8 @@
 @section("contenido")
 	<h2>Crear Categoria</h2>
 
+	<a href="{{route('proveedores.index')}}">Regresar</a>
+
 	<form action="{{route('proveedores.store')}}" method="post" accept-charset="utf-8">
 		@csrf
 		<label  for="nombre">Proveedor:<label>

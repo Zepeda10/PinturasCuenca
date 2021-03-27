@@ -7,6 +7,14 @@
 	
 	<h2>Productos</h2>
 
+	<form action="{{route('productos.index',$buscar)}}" method="get" accept-charset="utf-8">
+		<label for="buscar">Buscar:</label>
+		<input type="text" name="buscar" placeholder="Producto, Código de barras">
+
+		<button type="submit">Buscar</button>
+	</form>
+
+
 	<a href="{{route('productos.create')}}">Agregar</a>
 
 	<table border="1">
@@ -57,6 +65,11 @@
 	        @endforeach	        
 		</tbody>
 	</table>
+
+	{{ $productos->appends(['buscar' => $buscar])->links() }} 
+
+
+	
 
 
 @endsection

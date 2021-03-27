@@ -5,16 +5,9 @@
 
 @section("contenido")
 	
-	<h2>Proveedores</h2>
+	<h2>Show Proveedor</h2>
 
-	<form action="{{route('proveedores.index',$buscar)}}" method="get" accept-charset="utf-8">
-		<label for="buscar">Buscar:</label>
-		<input type="text" name="buscar" placeholder="Proveedor, RFC">
-
-		<button type="submit">Buscar</button>
-	</form>
-
-	<a href="{{route('proveedores.create')}}">Agregar</a>
+	<a href="{{route('proveedores.index')}}">Regresar</a>
 
 	<table border="1">
 		<thead>
@@ -30,7 +23,6 @@
 			</tr>
 		</thead>
 		<tbody>
-			@foreach($proveedores as $proveedor)
 				<tr>
 					<td>{{$proveedor->id}}</td>
 					<td>{{$proveedor->nombre}}</td>
@@ -46,12 +38,9 @@
 							<button type="submit">Eliminar</button>
 						</form>
 					</td>
-				</tr>
-	        @endforeach	        
+				</tr>      
 		</tbody>
 	</table>
-
-	{{ $proveedores->appends(['buscar' => $buscar])->links() }}
 	
 @endsection
 

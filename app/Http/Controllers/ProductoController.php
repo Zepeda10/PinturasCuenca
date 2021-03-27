@@ -15,10 +15,24 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $productos = Producto::all();
+        if($request){
+            $categorias = Categoria::all();
+            $buscar = trim($request->get('buscar'));
+  
+                $productos = Producto::where('nombre', 'LIKE', '%'.$buscar.'%')
+                        ->orWhere('cod_barras', 'LIKE', '%'.$buscar.'%')
+                        ->orderBy('id','asc')
+                        ->paginate(2);
+
+                return view("admin.productos.index",compact("productos","categorias","buscar"));
+      
+        }
+        /*
+        $productos = Producto::paginate(5);
         return view("admin.productos.index",compact("productos"));
+        */
     }
 
     /**

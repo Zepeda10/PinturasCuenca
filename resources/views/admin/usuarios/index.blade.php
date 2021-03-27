@@ -7,6 +7,9 @@
 	
 	<h2>Usuarios</h2>
 
+	<label for="autocomplete-search">Buscar:</label>
+	<input type="text" id="autocomplete-search" placeholder="Nombre, Rol">
+
 	<a href="{{route('usuarios.create')}}">Agregar</a>
 
 	<table border="1">
@@ -17,7 +20,7 @@
 				<th>Tipo</th>
 				<th>Foto</th>
 				<th>Editar</th>
-				<th>Eliminar</th>
+				<th>Eliminar</th> 
 			</tr>
 		</thead>
 		<tbody>
@@ -43,6 +46,34 @@
 	        @endforeach	        
 		</tbody>
 	</table>
+
+	{{ $usuarios->links() }}
+
+	<script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
+	<script src="{{asset('js/easy/jquery.easy-autocomplete.min.js')}}"></script>
+
+	<script>
+		
+		$("#autocomplete-search").easyAutocomplete({
+		    url: function(search) {
+		        return "{{route('usuarios.search')}}?search=" + search;
+		    },
+		 
+		   //getValue: "usuario",
+		   getValue: function(element) {
+        	return element.usuario +" - "+ element.rol;
+    	   }, 
+	 
+		    list: {
+		        onChooseEvent: function() {
+		            var selectedUser = $("#autocomplete-search").getSelectedItemData();
+		           window.location = "{{url('admin/usuarios')}}" + "/" + selectedUser.id;
+		        }
+		    }
+		});
+	</script>
+
+
 
 
 @endsection

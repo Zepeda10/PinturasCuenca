@@ -6,6 +6,8 @@
 @section("contenido")
 	<h2>Crear Producto</h2>
 
+	<a href="{{route('productos.index')}}">Regresar</a>
+
 	<form action="{{route('productos.store')}}" method="post" enctype="multipart/form-data" accept-charset="utf-8">
 		@csrf
 		<label  for="nombre">Producto:<label>
