@@ -20,19 +20,43 @@ class ProductoController extends Controller
         if($request){
             $categorias = Categoria::all();
             $buscar = trim($request->get('buscar'));
-  
+            $categoria = trim($request->get('categoria_id'));
+            
+            if($buscar and $categoria==0){
                 $productos = Producto::where('nombre', 'LIKE', '%'.$buscar.'%')
                         ->orWhere('cod_barras', 'LIKE', '%'.$buscar.'%')
                         ->orderBy('id','asc')
                         ->paginate(2);
-
                 return view("admin.productos.index",compact("productos","categorias","buscar"));
-      
-        }
+
+            }else if($buscar and $categoria){
+                $productos = Producto::where([['nombre', 'LIKE', '%'.$buscar.'%'], ['categoria_id', 'LIKE', '%'.$categoria.'%']])
+                        ->orWhere([['cod_barras', 'LIKE', '%'.$buscar.'%'],['categoria_id', 'LIKE', '%'.$categoria.'%']])
+                        ->orderBy('id','asc')
+                        ->paginate(2);
+                return view("admin.productos.index",compact("productos","categorias","buscar"));
+ 
+            }else if(!$buscar and $categoria){
+                $productos = Producto::where('categoria_id', 'LIKE', '%'.$categoria.'%')
+                        ->orderBy('id','asc')
+                        ->paginate(2);
+                return view("admin.productos.index",compact("productos","categorias","buscar"));
+
+            }else if(!$buscar and !$categoria){
+                $categorias = Categoria::all();
+                $productos = Producto::where('nombre', 'LIKE', '%'.$buscar.'%')
+                        ->orWhere('cod_barras', 'LIKE', '%'.$buscar.'%')
+                        ->orderBy('id','asc')
+                        ->paginate(2);
+                return view("admin.productos.index",compact("productos","categorias","buscar"));
+            }
+
+            
         /*
         $productos = Producto::paginate(5);
         return view("admin.productos.index",compact("productos"));
         */
+            }
     }
 
     /**
@@ -137,5 +161,5 @@ class ProductoController extends Controller
         $producto->delete();
 
         return redirect()->route('productos.index');
-    }
+    } 
 }

@@ -63,7 +63,7 @@
 		   getValue: function(element) {
         	return element.usuario +" - "+ element.rol;
     	   }, 
-	 
+	  
 		    list: {
 		        onChooseEvent: function() {
 		            var selectedUser = $("#autocomplete-search").getSelectedItemData();

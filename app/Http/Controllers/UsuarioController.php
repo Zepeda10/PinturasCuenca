@@ -135,7 +135,7 @@ class UsuarioController extends Controller
             ->select('users.*', 'roles.rol')
             ->where('usuario', 'LIKE', '%'.$request->search.'%')
             ->orWhere('roles.rol', 'LIKE', '%'.$request->search.'%') 
-            ->get();
+            ->get(); 
         return \response()->json($usuario);
-    }
+    } 
 }

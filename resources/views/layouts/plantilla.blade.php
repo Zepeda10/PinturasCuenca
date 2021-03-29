@@ -12,6 +12,7 @@
 	<div class="cabecera"> 
 		@yield("cabecera")
 		<h2>Cabecera</h2>
+		<a href="{{route('admin.welcome')}}">Inicio</a>
 		<a href="{{route('roles.index')}}">Roles</a>
 		<a href="{{route('usuarios.index')}}">Usuarios</a>
 		<a href="{{route('productos.index')}}">Productos</a>

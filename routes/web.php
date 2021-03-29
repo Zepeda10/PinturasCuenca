@@ -33,3 +33,8 @@ Route::resource('admin/roles',RolController::class);
 Route::resource('admin/usuarios',UsuarioController::class);
 
 Route::get('/search', 'App\Http\Controllers\UsuarioController@search')->name('usuarios.search');
+
+Route::get('admin/', function () {
+    return view('admin.welcome');
+})->name('admin.welcome'); 
+
