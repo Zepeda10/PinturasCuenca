@@ -6,7 +6,7 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\CategoriaController;
-
+ 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,8 +19,10 @@ use App\Http\Controllers\CategoriaController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
+
+
 
 Route::resource('admin/productos',ProductoController::class);
 
@@ -38,3 +40,12 @@ Route::get('admin/', function () {
     return view('admin.welcome');
 })->name('admin.welcome'); 
 
+
+
+Auth::routes(["register" => false]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('ventas/', function () {
+    return view('ventas.index');
+})->name('ventas.index');
