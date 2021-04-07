@@ -45,4 +45,10 @@ class TemporalVenta extends Model
     						    ->where('producto_id',$id)
     						    ->delete();
     }
+
+    //Función para eliminar registros de la tabla tempora_venta
+    public static function getEliminaTemporalAttribute($folio){ 
+        $datos = TemporalVenta::where('folio', $folio)
+                                ->delete();
+    }
 }

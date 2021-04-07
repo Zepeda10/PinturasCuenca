@@ -52,8 +52,10 @@
         <h1>Bienvenido, {{Auth::user()->usuario}}</h1>
 
         <form action="{{route('ventas.guardar')}}" method="post" id="frmVender" accept-charset="utf-8">
+            @csrf
             <input id="producto_id" type="hidden" name="producto_id">
-            <input id="folio" type="hidden" name="folio">
+            <input id="user_id" type="hidden" name="user_id" value="{{Auth::user()->id}}">
+            <input id="folio" type="hidden" name="folio" value="<?php echo $folio; ?>">
 
             <label>Código de barras</label>
             <input type="text" name="cod_barras" id="cod_barras" placeholder="Código de barras" onkeyup="buscarProducto(event, this, this.value)" autfocus required>
@@ -82,7 +84,7 @@
                         <th>Producto</th>
                         <th>Precio</th>
                         <th>Cantidad</th>
-                        <th>Subtotal</th>
+                        <th>Subtotal</th> 
                     </tr>
                 </thead>
                 <tbody>
@@ -183,8 +185,7 @@
                                     if(resultado.error==''){
                                         $("#tbl_venta tbody").empty();
                                         $("#tbl_venta tbody").append(resultado.datos);
-                                        $("#total").val(resultado.total);
-
+                                        $("#total").val(resultado.total);                                    
                                         $("#producto_id").val('');
                                         $("#cod_barras").val('');
                                         $("#producto").val('');                          

@@ -7,7 +7,7 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\CategoriaController;
-use App\Http\Controllers\TemporalVentaController;
+use App\Http\Controllers\TemporalVentaController; 
  
 /*
 |--------------------------------------------------------------------------
