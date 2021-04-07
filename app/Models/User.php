@@ -51,4 +51,9 @@ class User extends Authenticatable
     public function imagen(){
         return $this->belongsTo('App\Models\Imagen');
     }
+
+    //Relación uno a muchos
+    public function ventas(){
+        return $this->hasMany('App\Models\Ventas');
+    }
 }

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Proveedor extends Model
 {
     use HasFactory;
-    protected $table="proveedores"; //Declarando que la tabla (migración) es 'imagenes' 
+    protected $table="proveedores"; //Declarando que la tabla (migración) es 'proveedores' 
 
     protected $fillable = ['nombre',
     						'rfc',

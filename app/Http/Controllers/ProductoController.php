@@ -160,6 +160,26 @@ class ProductoController extends Controller
         $producto = Producto::findOrFail($id);
         $producto->delete();
 
-        return redirect()->route('productos.index');
+        return redirect()->route('productos.index'); 
     } 
+
+    public function buscarProducto($codigo){
+        $datos = Producto::where('cod_barras', $codigo)->first();
+
+        $res['existe'] = false;
+        $res['datos'] = '';
+        $res['error'] = '';
+
+        if($datos){ //Si existe el registro
+            $res['datos'] = $datos;
+            $res['existe'] = true;
+        }else{
+            $res['error'] = 'No existe ese producto';
+            $res['existe'] = false;
+        }
+
+        echo json_encode($res);
+
+    }
+
 }
