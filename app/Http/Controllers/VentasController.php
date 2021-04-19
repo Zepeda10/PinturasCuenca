@@ -7,6 +7,7 @@ use App\Models\Ventas;
 use App\Models\Producto;
 use App\Models\TemporalVenta;
 use App\Models\DetalleVenta;
+use Carbon\Carbon;
 
 
 class VentasController extends Controller
@@ -23,10 +24,11 @@ class VentasController extends Controller
     	$detalle = new DetalleVenta();
 
     	$folio = $request->folio;
-    	$total = $request->total;	
+    	$total = preg_replace('/[$,]/','',$request->total);	
     	$id_usuario = $request->user_id;	
+        $fecha = Carbon::now()->toDateTimeString();
 
-        $resultadoId = Ventas::insertaVenta($folio,$total,$id_usuario); 
+        $resultadoId = Ventas::insertaVenta($folio,$total,$id_usuario,$fecha); 
       
 
         if($resultadoId){//si lac función retorna un ID
@@ -49,4 +51,12 @@ class VentasController extends Controller
 
         return redirect()->route('ventas.index');
     }
+
+
+    public function cancelar(Request $request){
+        $temporal = TemporalVenta::truncate();
+
+        return redirect()->route('ventas.index'); 
+    }
+
 }

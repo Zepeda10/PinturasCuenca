@@ -42,10 +42,10 @@ class TemporalVentaController extends Controller
 
     	$res["datos"] = $this->cargaProductos($folio);
         $res["error"] = $error;
-        //$res["total"] = number_format($this->totalProductos($folio),2,'.',',');
-        $res["total"] = $this->totalProductos($folio);
+        $res["total"] = number_format($this->totalProductos($folio),2,'.',',');
+        //$res["total"] = $this->totalProductos($folio);
 
-        echo json_encode($res);
+        echo json_encode($res); 
     }
 
     public function cargaProductos($folio){

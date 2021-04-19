@@ -95,8 +95,13 @@
             <label>Total</label>
             <input type="text" name="total" id="total" placeholder="Total" value="0.00" readonly>
 
-            <button type="button" name="completar_compra" id="completar_compra">Completar compra</button>
+            <button type="button" name="completar_compra" id="completar_compra">Completar venta</button>
 
+        </form>
+
+        <form action="{{route('ventas.cancelar')}}" method="post" accept-charset="utf-8">
+         @csrf    
+             <button type="submit" name="cancelar_venta" id="cancelar_venta">Cancelar venta</button>
         </form>
 
 
@@ -116,6 +121,7 @@
                 }
 
             });
+
         });
 
         function buscarProducto(e,tagCodigo,codigo){

@@ -3,19 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Categoria;
+use App\Models\Ventas;
+use Illuminate\Support\Facades\DB;
 
-class CategoriaController extends Controller
+class VerVentasController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() 
+    public function index()
     {
-        $categorias = Categoria::all();
-        return view("admin.categorias.index",compact("categorias")); 
+        $ventas = Ventas::paginate(3);
+        return view("admin.verVentas.index",compact("ventas")); 
     }
 
     /**
@@ -25,7 +26,7 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        return view("admin.categorias.create");
+        //
     }
 
     /**
@@ -36,11 +37,7 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        $categoria = new Categoria();
-        $categoria->categoria = $request->categoria;
-        $categoria->save();
-
-        return redirect()->route('categorias.index');
+        //
     }
 
     /**
@@ -51,7 +48,8 @@ class CategoriaController extends Controller
      */
     public function show($id)
     {
-        //
+        $venta = Ventas::findOrFail($id);
+        return view("admin.verVentas.show",compact("venta"));
     }
 
     /**
@@ -62,8 +60,7 @@ class CategoriaController extends Controller
      */
     public function edit($id)
     {
-        $categoria = Categoria::findOrFail($id);
-        return view("admin.categorias.edit", compact("categoria"));
+        //
     }
 
     /**
@@ -75,11 +72,7 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $categoria = Categoria::findOrFail($id);
-        echo $categoria;
-        $categoria->update($request->all());
-
-        return redirect()->route('categorias.index');
+        //
     }
 
     /**
@@ -90,9 +83,7 @@ class CategoriaController extends Controller
      */
     public function destroy($id)
     {
-        $categoria = Categoria::findOrFail($id);
-        $categoria->delete();
-
-        return redirect()->route('categorias.index');
+        //
     }
+
 }

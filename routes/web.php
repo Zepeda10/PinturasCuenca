@@ -7,6 +7,7 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\VerVentasController; 
 use App\Http\Controllers\TemporalVentaController; 
  
 /*
@@ -46,6 +47,8 @@ Route::get('/eliminaProducto/{id}/{folio}', 'App\Http\Controllers\TemporalVentaC
 
 Route::post('/guardaVenta', 'App\Http\Controllers\VentasController@guardar')->name('ventas.guardar');
 
+Route::post('/cancelaVenta', 'App\Http\Controllers\VentasController@cancelar')->name('ventas.cancelar');
+
 Route::get('admin/', function () {
     return view('admin.welcome');
 })->name('admin.welcome'); 
@@ -59,3 +62,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('ventas/', function () {
     return view('ventas.index');
 })->name('ventas.index'); 
+
+Route::get('admin/ventas', 'App\Http\Controllers\VerVentasController@index')->name('verventas.index');
+
+Route::get('admin/ventas/{venta}', 'App\Http\Controllers\VerVentasController@show')->name('ventas.show');
+

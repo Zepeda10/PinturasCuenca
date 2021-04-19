@@ -50,7 +50,8 @@
 						<a href="{{route('productos.index')}}">Productos</a>
 						<a href="{{route('categorias.index')}}">Categorias</a>
 						<a href="{{route('proveedores.index')}}">Proveedores</a>
-						<a href="{{route('ventas.index')}}">Ventas</a>
+                        <a href="{{route('verventas.index')}}">Ventas</a>
+						<a href="{{route('ventas.index')}}">Realizar venta</a>
 				                                       
 					</div>
                                                                                   
