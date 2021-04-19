@@ -10,26 +10,29 @@
 
 	<a href="{{route('verventas.index')}}">Regresar</a>
 
-		<table border="1">
+	<p>Folio: {{ $venta->folio }}</p>
+	<p>Total: {{ $venta->total }}</p>
+	<p>Usuario: {{ $venta->user->usuario }}</p>
+	<p>Fecha: {{ $venta->created_at }}</p>
+
+	<table border="1">
 		<thead>
 			<tr>
 				<th>Id</th>
-				<th>Folio</th>
-				<th>Total</th>
-				<th>Usuario</th>
-				<th>Fecha</th>
+				<th>Producto</th>
+				<th>Cantidad</th>
+				<th>Precio Individual</th>
 			</tr>
 		</thead>
 		<tbody>
-
-			<tr>
-				<td>{{$venta->id}}</td>
-				<td>{{$venta->folio}}</td>
-				<td>{{$venta->total}}</td>
-				<td>{{$venta->user->usuario}}</td>
-				<td>{{$venta->created_at}}</td>			
-			</tr>
-     
+			@foreach($detalle as $d)
+				<tr>
+					<td>{{$d->id}}</td>
+					<td>{{$d->nombre}}</td>
+					<td>{{$d->cantidad}}</td>
+					<td>{{$d->precio_individual}}</td>		
+				</tr>
+	        @endforeach	        
 		</tbody>
 	</table>
 

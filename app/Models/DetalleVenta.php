@@ -14,4 +14,9 @@ class DetalleVenta extends Model
                             'precio_individual',
                             'venta_id',
                             'producto_id'];
+
+    //Relación uno a uno
+    public function venta(){
+	  return $this->belongsTo('App\Ventas');
+	}
 }

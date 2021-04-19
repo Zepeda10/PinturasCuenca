@@ -19,6 +19,11 @@ class Ventas extends Model
         return $this->belongsTo('App\Models\User');
     }
 
+    //Relación uno a uno
+    public function detalle_venta() {
+      return $this->hasOne('App\DetalleVenta');
+    }
+
     public static function insertaVenta($folio,$total,$id_usuario,$fecha){
         $sql = DB::table('ventas')->insert([
             'folio' => $folio,

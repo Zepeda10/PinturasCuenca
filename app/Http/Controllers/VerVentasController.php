@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Ventas;
+use App\Models\DetalleVenta;
 use Illuminate\Support\Facades\DB;
 
 class VerVentasController extends Controller
@@ -13,10 +15,26 @@ class VerVentasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $ventas = Ventas::paginate(3);
-        return view("admin.verVentas.index",compact("ventas")); 
+        $users = User::all();
+        $folio = trim($request->get('folio'));
+        $user = trim($request->get('user_id'));
+
+        if((!$folio and !$user) || ($folio and $user) ){
+            $ventas = Ventas::paginate(3);
+
+        }else if($folio and $user==0){
+            $ventas = Ventas::where('folio', 'LIKE', '%'.$folio.'%')
+                    ->paginate(3);
+        }else if(!$folio and $user!=0){
+            $ventas = Ventas::where('user_id', 'LIKE', '%'.$user.'%')
+                    ->orderBy('id','asc')
+                    ->paginate(3);
+        }
+        
+
+        return view("admin.verVentas.index",compact("ventas","users","folio")); 
     }
 
     /**
@@ -48,8 +66,9 @@ class VerVentasController extends Controller
      */
     public function show($id)
     {
-        $venta = Ventas::findOrFail($id);
-        return view("admin.verVentas.show",compact("venta"));
+        $venta = Ventas::find($id);
+        $detalle = DetalleVenta::where('venta_id', $id)->get();
+        return view("admin.verVentas.show",compact("detalle","venta"));
     }
 
     /**
