@@ -12,15 +12,34 @@
 		@csrf
 		@method('put')
 		<label  for="nombre">Proveedor:<label>
-		<input type="text" name="nombre" value="{{$proveedor->nombre}}">
+		<input type="text" name="nombre" value="{{ old('nombre', $proveedor->nombre) }}">
+		@error('nombre')
+			<small>*{{ $message }}</small>
+		@enderror
+
 		<label  for="rfc">RFC:<label>
-		<input type="text" name="rfc" value="{{$proveedor->rfc}}">
+		<input type="text" name="rfc" value="{{ old('rfc', $proveedor->rfc) }}">
+		@error('rfc')
+			<small>*{{ $message }}</small>
+		@enderror
+
 		<label  for="direccion">Dirección:<label>
-		<input type="text" name="direccion" value="{{$proveedor->direccion}}">
+		<input type="text" name="direccion" value="{{ old('direccion', $proveedor->direccion) }}">
+		@error('direccion')
+			<small>*{{ $message }}</small>
+		@enderror
+
 		<label  for="email">Email:<label>
-		<input type="text" name="email" value="{{$proveedor->email}}">
+		<input type="text" name="email" value="{{ old('email', $proveedor->email) }}">
+		@error('email')
+			<small>*{{ $message }}</small>
+		@enderror
+
 		<label  for="telefono">Teléfono:<label>
-		<input type="text" name="telefono" value="{{$proveedor->telefono}}">
+		<input type="text" name="telefono" value="{{ old('telefono', $proveedor->telefono) }}">
+		@error('telefono')
+			<small>*{{ $message }}</small>
+		@enderror
 
 		<input type="submit" name="enviar" value="Actualizar">
 	</form>

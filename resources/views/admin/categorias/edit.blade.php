@@ -13,6 +13,10 @@
 		@method('put')
 		<label  for="categoria">Categoria:<label>
 		<input type="text" name="categoria" value="{{$categoria->categoria}}">
+		@error('categoria')
+			<small>*{{ $message }}</small>
+		@enderror
+		
 		<input type="submit" name="enviar" value="Actualizar">
 	</form>
 	

@@ -13,6 +13,10 @@
 		@method('put')
 		<label  for="rol">Rol:<label>
 		<input type="text" name="rol" value="{{$rol->rol}}">
+		@error('rol')
+			<small>*{{ $message }}</small>
+		@enderror
+		
 		<input type="submit" name="enviar" value="Actualizar">
 	</form>
 	

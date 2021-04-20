@@ -36,6 +36,10 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'categoria' => 'required|max:50'
+        ]);
+        
         $categoria = new Categoria();
         $categoria->categoria = $request->categoria;
         $categoria->save();
@@ -75,6 +79,10 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'categoria' => 'required|max:50'
+        ]);
+        
         $categoria = Categoria::findOrFail($id);
         echo $categoria;
         $categoria->update($request->all());

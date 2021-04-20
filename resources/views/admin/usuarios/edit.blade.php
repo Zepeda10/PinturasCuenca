@@ -12,7 +12,11 @@
 		@csrf
 		@method('put')
 		<label  for="usuario">Usuario:<label>
-		<input type="text" name="usuario" value="{{$usuario->usuario}}">
+		<input type="text" name="usuario" value="{{ old('usuario', $usuario->usuario) }}">
+		@error('usuario')
+			<small>*{{ $message }}</small>
+		@enderror
+		
 		<select name="role_id">
 			@foreach($roles as $rol)
 			<option value="{{ $rol->id }}">{{ $rol->rol }}</option>}

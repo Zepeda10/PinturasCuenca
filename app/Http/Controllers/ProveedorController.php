@@ -47,6 +47,14 @@ class ProveedorController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nombre' => 'required',
+            'rfc' => 'required',
+            'direccion' => 'required',
+            'email' => 'required|email|unique:proveedores',
+            'telefono' => 'required|max:10|digits:10'
+        ]);
+
         $proveedor = new Proveedor();
         $proveedor->nombre = $request->nombre;
         $proveedor->rfc = $request->rfc;
@@ -91,6 +99,14 @@ class ProveedorController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nombre' => 'required',
+            'rfc' => 'required',
+            'direccion' => 'required',
+            'email' => 'required|email|unique:proveedores,email,'.$id,
+            'telefono' => 'required|max:10|digits:10'
+        ]);
+        
         $proveedor = Proveedor::findOrFail($id);
         echo $proveedor;
         $proveedor->update($request->all());

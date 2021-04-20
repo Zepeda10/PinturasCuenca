@@ -36,6 +36,10 @@ class RolController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'rol' => 'required|max:30'
+        ]);
+
         $rol = new Role();
         $rol->rol = $request->rol;
         $rol->save();
@@ -75,6 +79,10 @@ class RolController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'rol' => 'required|max:30'
+        ]);
+        
         $rol = Role::findOrFail($id);
         echo $rol;
         $rol->update($request->all());

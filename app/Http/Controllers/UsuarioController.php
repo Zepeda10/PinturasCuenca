@@ -41,6 +41,11 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'usuario' => 'required|max:20',
+            'password' => 'required'
+        ]);
+
         $entrada = $request->all();
 
         if($archivo = $request->file('imagen_id')){//Si hay imagen
@@ -93,6 +98,10 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'usuario' => 'required|max:20',
+        ]);
+        
         $usuario = User::findOrFail($id);
 
         $entrada = $request->all();

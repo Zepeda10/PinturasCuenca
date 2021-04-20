@@ -12,6 +12,10 @@
 		@csrf
 		<label  for="categoria">Categoria:<label>
 		<input type="text" name="categoria" placeholder="Categoria">
+		@error('categoria')
+			<small>*{{ $message }}</small>
+		@enderror
+		
 		<input type="submit" name="enviar" value="Añadir">
 	</form>
 

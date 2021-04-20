@@ -12,6 +12,11 @@
 		@csrf
 		<label  for="rol">Rol:<label>
 		<input type="text" name="rol" placeholder="Rol">
+
+		@error('rol')
+			<small>*{{ $message }}</small>
+		@enderror
+
 		<input type="submit" name="enviar" value="Añadir">
 	</form>
 

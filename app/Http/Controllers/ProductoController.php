@@ -52,11 +52,7 @@ class ProductoController extends Controller
             }
 
             
-        /*
-        $productos = Producto::paginate(5);
-        return view("admin.productos.index",compact("productos"));
-        */
-            }
+        }
     }
 
     /**
@@ -79,6 +75,18 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nombre' => 'required|max:250',
+            'cod_barras' => 'required|unique:productos',
+            'descripcion' => 'required',
+            'stock' => 'required|integer',
+            'precio_compra' => 'required|numeric|regex:/^[\d]{0,8}(\.[\d]{1,2})?$/',
+            'precio_venta' => 'required|numeric|regex:/^[\d]{0,8}(\.[\d]{1,2})?$/',
+            'iva' => 'required|numeric|regex:/^[\d]{0,8}(\.[\d]{1,2})?$/',
+            'categoria_id' => 'required',
+            'proveedor_id' => 'required'
+        ]);
+
         $entrada = $request->all();
 
         if($archivo = $request->file('imagen_id')){//Si hay imagen
@@ -130,6 +138,18 @@ class ProductoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nombre' => 'required|max:250',
+            'cod_barras' => 'required|unique:productos,cod_barras,'.$id,
+            'descripcion' => 'required',
+            'stock' => 'required|integer',
+            'precio_compra' => 'required|numeric|regex:/^[\d]{0,8}(\.[\d]{1,2})?$/',
+            'precio_venta' => 'required|numeric|regex:/^[\d]{0,8}(\.[\d]{1,2})?$/',
+            'iva' => 'required|numeric|regex:/^[\d]{0,8}(\.[\d]{1,2})?$/',
+            'categoria_id' => 'required',
+            'proveedor_id' => 'required'
+        ]);
+        
         $producto = Producto::findOrFail($id);
 
         $entrada = $request->all();
