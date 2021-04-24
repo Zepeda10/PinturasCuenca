@@ -24,7 +24,7 @@
 		@enderror
 
 		<label  for="direccion">Dirección:<label>
-		<input type="text" name="direccion" value="{{ old('direccion', $proveedor->direccion) }}">
+		<textarea name="direccion">{{ old('direccion', $proveedor->direccion) }}</textarea>
 		@error('direccion')
 			<small>*{{ $message }}</small>
 		@enderror

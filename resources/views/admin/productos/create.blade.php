@@ -22,8 +22,8 @@
 			<small>*{{ $message }}</small>
 		@enderror
 
-		<label  for="descripcion">Descripción:<label>
-		<input type="text" name="descripcion" placeholder="Descripción" value="{{ old('descripcion') }}">
+		<label for="descripcion">Descripción:<label>
+		<textarea name="descripcion" placeholder="Descripción">{{ old('descripcion') }}</textarea>
 		@error('descripcion')
 			<small>*{{ $message }}</small>
 		@enderror

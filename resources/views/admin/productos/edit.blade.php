@@ -24,7 +24,7 @@
 		@enderror
 
 		<label  for="descripcion">Descripción:<label>
-		<input type="text" name="descripcion" value="{{ old('descripcion', $producto->descripcion) }}">
+		<textarea name="descripcion">{{ old('descripcion', $producto->descripcion) }}</textarea>
 		@error('descripcion')
 			<small>*{{ $message }}</small>
 		@enderror
