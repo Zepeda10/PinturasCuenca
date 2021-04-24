@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RolController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\VentasController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ProductoController;
@@ -67,3 +68,4 @@ Route::get('admin/ventas', 'App\Http\Controllers\VerVentasController@index')->na
 
 Route::get('admin/ventas/{venta}', 'App\Http\Controllers\VerVentasController@show')->name('ventas.show');
 
+Route::get('admin/genera-pdf/{id}', [App\Http\Controllers\PDFController::class, 'generatePDF'])->name('verventas.pdf');

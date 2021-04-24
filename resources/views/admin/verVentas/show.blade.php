@@ -7,8 +7,8 @@
 	
 	<h2>Show Venta</h2>
 
-
 	<a href="{{route('verventas.index')}}">Regresar</a>
+	<a href="{{route('verventas.pdf', $venta->id)}}">Generar PDF</a>
 
 	<p>Folio: {{ $venta->folio }}</p>
 	<p>Total: {{ $venta->total }}</p>
