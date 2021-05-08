@@ -54,7 +54,13 @@
 									@if ($venta->user)
 									<td>{{$venta->user->usuario}}</td>
 									@else
-										<td>Sin usuario</td>
+									<td class="bg-white text-sm">
+										<span class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
+											<span aria-hidden class="absolute inset-0 bg-red-200 opacity-50 rounded-full"></span>
+											<span class="relative">Sin usuario</span>
+										</span>
+									</td>
+										
 									@endif
 									
 									<td>{{$venta->created_at}}</td>

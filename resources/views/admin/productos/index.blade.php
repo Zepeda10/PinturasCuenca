@@ -42,7 +42,7 @@
 					<table>
 						<thead>
 							<tr>
-								<th class="w-14">Id</th>
+								<th class="w-10">Id</th>
 								<th class="w-36">Producto</th>
 								<th class="w-32">Código Barras</th>
 								<th class="w-36">Descripción</th>
@@ -50,11 +50,11 @@
 								<th class="w-32">Precio Compra</th>
 								<th class="w-32">Precio Venta</th>
 								<th class="w-14">IVA</th>
-								<th class="w-32">Categoría</th>
-								<th class="w-36">Proveedor</th>
+								<th class="w-40">Categoría</th>
+								<th class="w-40">Proveedor</th>
 								<th class="w-32">Imagen</th>
-								<th class="w-11">Editar</th>
-								<th class="w-11">Eliminar</th>
+								<th class="w-10">Editar</th>
+								<th class="w-10">Eliminar</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -72,13 +72,23 @@
 									@if ($producto->categoria)
 										<td>{{$producto->categoria->categoria}}</td>
 									@else
-										<td>Sin categoría</td>
+										<td class="bg-white text-sm">
+											<span class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
+												<span aria-hidden class="absolute inset-0 bg-red-200 opacity-50 rounded-full"></span>
+												<span class="relative">Sin categoría</span>
+											</span>
+										</td>
 									@endif
 
 									@if ($producto->proveedor)
 									<td>{{$producto->proveedor->nombre}}</td>
 									@else
-										<td>Sin proveedor</td>
+										<td class="bg-white text-sm">
+											<span class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
+												<span aria-hidden class="absolute inset-0 bg-red-200 opacity-50 rounded-full"></span>
+												<span class="relative">Sin proveedor</span>
+											</span>
+										</td>
 									@endif
 									
 									@if ($producto->imagen)
