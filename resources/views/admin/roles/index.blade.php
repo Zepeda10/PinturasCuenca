@@ -39,7 +39,7 @@
 									</td>
 
 									<td class="">
-										<form action="{{route('roles.destroy',$rol)}}" method="post" accept-charset="utf-8">
+										<form class="form-eliminar" action="{{route('roles.destroy',$rol)}}" method="post" accept-charset="utf-8">
 											@csrf
 											@method('delete')
 											<button type="submit">
@@ -56,6 +56,12 @@
                 </div>
             </div>
 		</div>
+
+		<script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+		<script src="{{ asset('js/admin/productos.js') }}"></script>
+		
+		<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+		<script src="{{asset('js/confirmacion-eliminar.js')}}"></script>
 
 	
 @endsection

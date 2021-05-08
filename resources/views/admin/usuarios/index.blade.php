@@ -55,7 +55,7 @@
 										</a>
 									</td>
 									<td>
-										<form action="{{route('usuarios.destroy',$usuario)}}" method="post" accept-charset="utf-8">
+										<form action="{{route('usuarios.destroy',$usuario)}}" method="post" accept-charset="utf-8" class="form-eliminar">
 											@csrf
 											@method('delete')
 											<button type="submit">
@@ -79,9 +79,11 @@
 
 	<script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
 	<script src="{{asset('js/easy/jquery.easy-autocomplete.min.js')}}"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<script src="{{asset('js/confirmacion-eliminar.js')}}"></script>
 
 	<script>
-		
+			
 		$("#autocomplete-search").easyAutocomplete({
 		    url: function(search) {
 		        return "{{route('usuarios.search')}}?search=" + search;
