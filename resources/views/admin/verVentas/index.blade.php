@@ -30,7 +30,7 @@
 	<div class="mt-4">        
         <div class="mt-6">
             <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-                <div class="inline-block w-11/12 shadow-sm rounded-lg overflow-hidden mx-12">
+                <div class="inline-block w-11/12 shadow-sm rounded-lg overflow-hidden mx-12 ml-14">
 					<table class="table-fixed">
 						<thead>
 							<tr>

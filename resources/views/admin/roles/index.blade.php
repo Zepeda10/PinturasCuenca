@@ -4,11 +4,12 @@
 <h2 class="titulo">Roles</h2>
 
 		<div class="mt-2">
-            <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4">
+            <div class="sm:-mx-8 px-4 sm:px-8 py-4">
 				<div class="mb-4 ml-4">      
 					<a class="ml-4 btn-agregar hover:no-underline" href="{{route('roles.create')}}">Agregar</a>
 				</div>
-                <div class="inline-block w-11/12 shadow-sm rounded-lg overflow-hidden mx-12 mt-1">
+
+                <div class="inline-block w-11/12 shadow-sm rounded-lg overflow-hidden mx-12 mt-1 ml-14">
                     <table>
                         <thead>
                             <tr>

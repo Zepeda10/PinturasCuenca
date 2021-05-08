@@ -26,7 +26,7 @@
 	<div class="mt-4">        
         <div class="mt-6">
             <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-                <div class="inline-block min-w-full shadow-sm rounded-lg overflow-hidden">
+                <div class="inline-block min-w-full shadow-sm rounded-lg overflow-hidden ml-2">
 					<table>
 						<thead>
 							<tr>

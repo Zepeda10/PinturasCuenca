@@ -9,7 +9,7 @@
 				<div class="mb-4 ml-4">    
 					<a class="ml-4 btn-agregar hover:no-underline" href="{{route('categorias.create')}}">Agregar</a>
 				</div>
-                <div class="inline-block w-11/12 shadow-sm rounded-lg overflow-hidden mx-12 mt-1">
+                <div class="inline-block w-11/12 shadow-sm rounded-lg overflow-hidden mx-12 mt-1 ml-14">
 					<table>
 						<thead>
 							<tr>
