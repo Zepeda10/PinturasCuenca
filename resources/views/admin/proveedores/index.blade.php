@@ -4,12 +4,20 @@
 	
 	<h2 class="titulo">Proveedores</h2>
 
-	<form action="{{route('proveedores.index',$buscar)}}" method="get" accept-charset="utf-8">
-		<label for="buscar">Buscar:</label>
-		<input type="text" name="buscar" placeholder="Proveedor, RFC">
+	<div class="mt-3">
+		<label for="buscar" class="block text-sm font-medium text-gray-700">Buscar</label>
+		<form action="{{route('proveedores.index',$buscar)}}" method="get" accept-charset="utf-8">
+			<div class="grid grid-cols-6 gap-6">
+				<div class="col-span-6 sm:col-span-2">
+					<input type="text" name="buscar" placeholder="Proveedor, RFC">
+				</div>
 
-		<button type="submit">Buscar</button>
-	</form>
+				<div class="col-span-6 sm:col-span-1">
+					<button type="submit" class="btn-buscar">Buscar</button>
+				</div>			
+			</div>
+		</form>
+	</div>
 
 	<div class="mt-4 -ml-3">  
 		<a class="btn-agregar hover:no-underline" href="{{route('proveedores.create')}}">Agregar</a>
@@ -64,12 +72,15 @@
 							@endforeach	        
 						</tbody>
 					</table>
-					</div>
+				</div>
+				<div class="mt-3">
+					{{ $proveedores->appends(['buscar' => $buscar])->links() }}
+				</div>
+				
             </div>
         </div>
     </div>
 
-	{{ $proveedores->appends(['buscar' => $buscar])->links() }}
 	
 @endsection
 

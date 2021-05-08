@@ -37,7 +37,7 @@ class RolController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'rol' => 'required|max:30'
+            'rol' => 'required|max:30|unique:roles'
         ]);
 
         $rol = new Role();
@@ -80,7 +80,7 @@ class RolController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'rol' => 'required|max:30'
+            'rol' => 'required|max:30|unique:roles,rol,'.$id
         ]);
         
         $rol = Role::findOrFail($id);

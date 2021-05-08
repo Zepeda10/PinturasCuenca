@@ -22,7 +22,6 @@
 								<th>Id</th>
 								<th>Usuario</th>
 								<th>Tipo</th>
-								<th>Foto</th>
 								<th>Editar</th>
 								<th>Eliminar</th> 
 							</tr>
@@ -46,11 +45,7 @@
                                     </div>
                                 </td>
 									<td>{{$usuario->role->rol}}</td>
-									@if ($usuario->imagen)
-										<td><img class="rounded-sm w-20 h-16" src="/images/{{$usuario->imagen->url}}" width="100"/></td> 
-									@else
-										<td><img class="rounded-sm w-20 h-16" src="/images/generico.jpg" width="100"/></td> 
-									@endif
+									
 									<td>
 										<a href="{{route('usuarios.edit', $usuario->id)}}">
 											<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-700 hover:text-green-500" viewBox="0 0 20 20" fill="currentColor">
@@ -75,11 +70,12 @@
 						</tbody>
 					</table>
                 </div>
+				<div class="mt-3">
+					{{ $usuarios->links() }}
+				</div>
             </div>
         </div>
     </div>
-
-	{{ $usuarios->links() }}
 
 	<script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
 	<script src="{{asset('js/easy/jquery.easy-autocomplete.min.js')}}"></script>

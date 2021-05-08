@@ -4,19 +4,28 @@
 	
 	<h2 class="titulo">Ventas</h2>
 
-	<form action="{{route('verventas.index',$folio,$users)}}" method="get" accept-charset="utf-8">
-		<label for="folio">Buscar:</label>
-		<input type="text" name="folio" placeholder="Folio">
+	<div class="mt-3">
+		<label for="folio" class="block text-sm font-medium text-gray-700">Buscar</label>
+		<form action="{{route('verventas.index',$folio,$users)}}" method="get" accept-charset="utf-8">
+			<div class="grid grid-cols-6 gap-6">
+				<div class="col-span-6 sm:col-span-2">
+					<input type="text" name="folio" placeholder="Folio">
+				</div>
+				<div class="col-span-6 sm:col-span-1">
+					<select name="user_id" id="select_user_id">
+						<option value="0">Usuario</option>
+						@foreach($users as $user)
+							<option value="{{ $user->id }}">{{ $user->usuario }}</option>
+						@endforeach
+					</select>
+				</div>
 
-		<select name="user_id" id="select_user_id">
-			<option value="0">Usuario</option>
-			@foreach($users as $user)
-			<option value="{{ $user->id }}">{{ $user->usuario }}</option>
-			@endforeach
-		</select>
-
-		<button type="submit">Buscar</button>
-	</form>
+				<div class="col-span-6 sm:col-span-1">
+					<button type="submit" class="btn-buscar">Buscar</button>
+				</div>		
+			</div>
+		</form>
+	</div>
 	
 	<div class="mt-4">        
         <div class="mt-6">
@@ -57,12 +66,14 @@
 						</tbody>
 					</table>
                 </div>
+				<div class="mt-3">
+					{{ $ventas->appends(request()->input())->links() }} 
+				</div>
             </div>
         </div>
     </div>
 
-	{{ $ventas->appends(request()->input())->links() }} 
-
+	
 @endsection
 
 @section("pie")

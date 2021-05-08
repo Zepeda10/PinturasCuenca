@@ -42,7 +42,7 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'usuario' => 'required|max:20',
+            'usuario' => 'required|max:20|unique:users',
             'password' => 'required'
         ]);
 
@@ -99,7 +99,7 @@ class UsuarioController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'usuario' => 'required|max:20',
+            'usuario' => 'required|max:20|unique:users,usuario,'.$id
         ]);
         
         $usuario = User::findOrFail($id);

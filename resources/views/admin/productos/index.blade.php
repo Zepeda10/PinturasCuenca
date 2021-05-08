@@ -3,22 +3,31 @@
 @section("body")
 
 	<h2 class="titulo">Productos</h2>
+	
+	<div class="mt-3">
+		<label for="buscar" class="block text-sm font-medium text-gray-700">Buscar</label>
+		<form action="{{route('productos.index',$buscar,$categorias)}}" method="get" accept-charset="utf-8">
+			<div class="grid grid-cols-6 gap-6">
+				<div class="col-span-6 sm:col-span-2">
+					<input type="text" name="buscar" placeholder="Producto, Código de barras">
+				</div>
 
-	<form action="{{route('productos.index',$buscar,$categorias)}}" method="get" accept-charset="utf-8">
-		<label for="buscar">Buscar:</label>
-		<input type="text" name="buscar" placeholder="Producto, Código de barras">
+				<div class="col-span-6 sm:col-span-1">
+					<select name="categoria_id" id="select_categoria_id">
+						<option value="0">Categoría</option>
+						@foreach($categorias as $categoria)
+						<option value="{{ $categoria->id }}">{{ $categoria->categoria }}</option>
+						@endforeach
+					</select>
+				</div>
 
-		<label  for="categoria_id">Categoría:<label>
-		<select name="categoria_id" id="select_categoria_id">
-			<option value="0">Categoría</option>
-			option
-			@foreach($categorias as $categoria)
-			<option value="{{ $categoria->id }}">{{ $categoria->categoria }}</option>
-			@endforeach
-	</select>
-
-		<button type="submit">Buscar</button>
-	</form>
+				<div class="col-span-6 sm:col-span-1">
+					<button type="submit" class="btn-buscar">Buscar</button>
+				</div>
+				
+			</div>
+		</form>
+	</div>
 
 	<div class="mt-4 -ml-3">  
 		<a class="btn-agregar hover:no-underline" href="{{route('productos.create')}}">Agregar</a>
@@ -88,12 +97,13 @@
 						</tbody>
 					</table>
                 </div>
+				<div class="mt-3">
+					{{ $productos->appends(request()->input())->links() }} 
+				</div>		
             </div>
         </div>
     </div>
-
-	{{ $productos->appends(request()->input())->links() }} 
-
+	
 	<script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
 	<script src="{{ asset('js/admin/productos.js') }}"></script>
  
