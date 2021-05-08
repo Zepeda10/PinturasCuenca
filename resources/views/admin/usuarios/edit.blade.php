@@ -1,9 +1,7 @@
-@extends("../layouts.plantilla")
+@extends("../layouts.master")
 
-@section("cabecera")
-@endsection
+@section("body")
 
-@section("contenido")
 	<h2>Editar Usuario</h2>
 
 	<a href="{{route('usuarios.index')}}">Regresar</a>

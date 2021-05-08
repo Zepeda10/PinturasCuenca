@@ -1,9 +1,6 @@
-@extends("../layouts.plantilla")
+@extends("../layouts.master")
 
-@section("cabecera")
-@endsection
-
-@section("contenido")
+@section("body")
 	
 	@if (session('status'))
         <div class="alert alert-success" role="alert">

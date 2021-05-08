@@ -1,9 +1,7 @@
-@extends("../layouts.plantilla")
+@extends("../layouts.master")
 
-@section("cabecera")
-@endsection
+@section("body")
 
-@section("contenido")
 	<h2>Editar Categoría</h2>
 
 	<a href="{{route('categorias.index')}}">Regresar</a>

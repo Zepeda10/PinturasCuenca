@@ -69,3 +69,8 @@ Route::get('admin/ventas', 'App\Http\Controllers\VerVentasController@index')->na
 Route::get('admin/ventas/{venta}', 'App\Http\Controllers\VerVentasController@show')->name('ventas.show');
 
 Route::get('admin/genera-pdf/{id}', [App\Http\Controllers\PDFController::class, 'generatePDF'])->name('verventas.pdf');
+
+
+Route::get('prueba/', function () {
+    return view('prueba');
+});

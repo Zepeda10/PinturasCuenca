@@ -1,9 +1,6 @@
-@extends("../layouts.plantilla")
+@extends("../layouts.master")
 
-@section("cabecera")
-@endsection
-
-@section("contenido")
+@section("body")
 	
 	<h2>Show Proveedor</h2>
 

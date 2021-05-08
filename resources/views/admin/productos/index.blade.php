@@ -1,11 +1,8 @@
-@extends("../layouts.plantilla")
+@extends("../layouts.master")
 
-@section("cabecera")
-@endsection
+@section("body")
 
-@section("contenido")
-	
-	<h2>Productos</h2>
+	<h2 class="titulo">Productos</h2>
 
 	<form action="{{route('productos.index',$buscar,$categorias)}}" method="get" accept-charset="utf-8">
 		<label for="buscar">Buscar:</label>
@@ -16,65 +13,84 @@
 			<option value="0">Categoría</option>
 			option
 			@foreach($categorias as $categoria)
-			<option value="{{ $categoria->id }}">{{ $categoria->categoria }}</option>}
+			<option value="{{ $categoria->id }}">{{ $categoria->categoria }}</option>
 			@endforeach
 	</select>
 
 		<button type="submit">Buscar</button>
 	</form>
 
-
-
-	<a href="{{route('productos.create')}}">Agregar</a>
-
-	<table border="1">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Producto</th>
-				<th>Código Barras</th>
-				<th>Descripción</th>
-				<th>Stock</th>
-				<th>Precio Compra</th>
-				<th>Precio Venta</th>
-				<th>IVA</th>
-				<th>Categoría</th>
-				<th>Proveedor</th>
-				<th>Imagen</th>
-				<th>Editar</th>
-				<th>Eliminar</th>
-			</tr>
-		</thead>
-		<tbody>
-			@foreach($productos as $producto)
-				<tr>
-					<td>{{$producto->id}}</td>
-					<td>{{$producto->nombre}}</td>
-					<td>{{$producto->cod_barras}}</td>
-					<td>{{$producto->descripcion}}</td>
-					<td>{{$producto->stock}}</td>
-					<td>{{$producto->precio_compra}}</td>
-					<td>{{$producto->precio_venta}}</td>
-					<td>{{$producto->iva}}</td>
-					<td>{{$producto->categoria->categoria}}</td>
-					<td>{{$producto->proveedor->nombre}}</td>
-					@if ($producto->imagen)
-						<td><img src="/images/{{$producto->imagen->url}}" width="100"/></td> 
-					@else
-						<td><img src="/images/generico.jpg" width="100"/></td> 
-					@endif
-					<td><a href="{{route('productos.edit', $producto->id)}}">Editar</a></td>
-					<td>
-						<form action="{{route('productos.destroy',$producto)}}" method="post" accept-charset="utf-8">
-							@csrf
-							@method('delete')
-							<button type="submit">Eliminar</button>
-						</form>
-					</td>
-				</tr>
-	        @endforeach	        
-		</tbody>
-	</table>
+	<div class="mt-4 -ml-3">  
+		<a class="btn-agregar hover:no-underline" href="{{route('productos.create')}}">Agregar</a>
+	</div>
+	
+	<div class="mt-4">        
+        <div class="mt-6">
+            <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+                <div class="inline-block min-w-full shadow-sm rounded-lg overflow-hidden">
+					<table>
+						<thead>
+							<tr>
+								<th class="w-14">Id</th>
+								<th class="w-36">Producto</th>
+								<th class="w-32">Código Barras</th>
+								<th class="w-36">Descripción</th>
+								<th class="w-14">Stock</th>
+								<th class="w-32">Precio Compra</th>
+								<th class="w-32">Precio Venta</th>
+								<th class="w-14">IVA</th>
+								<th class="w-32">Categoría</th>
+								<th class="w-36">Proveedor</th>
+								<th class="w-32">Imagen</th>
+								<th class="w-11">Editar</th>
+								<th class="w-11">Eliminar</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach($productos as $producto)
+								<tr>
+									<td>{{$producto->id}}</td>
+									<td>{{$producto->nombre}}</td>
+									<td>{{$producto->cod_barras}}</td>
+									<td>{{$producto->descripcion}}</td>
+									<td>{{$producto->stock}}</td>
+									<td>{{$producto->precio_compra}}</td>
+									<td>{{$producto->precio_venta}}</td>
+									<td>{{$producto->iva}}</td>
+									<td>{{$producto->categoria->categoria}}</td>
+									<td>{{$producto->proveedor->nombre}}</td>
+									@if ($producto->imagen)
+										<td><img class="rounded-sm w-20 h-12" src="/images/{{$producto->imagen->url}}" width="100"/></td> 
+									@else
+										<td><img class="rounded-sm w-20 h-12" src="/images/generico.jpg" width="100"/></td> 
+									@endif
+									<td>
+										<a href="{{route('productos.edit', $producto->id)}}">
+											<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-700 hover:text-green-500" viewBox="0 0 20 20" fill="currentColor">
+												<path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+												<path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+											</svg>
+										</a>
+									</td>
+									<td>
+										<form action="{{route('productos.destroy',$producto)}}" method="post" accept-charset="utf-8">
+											@csrf
+											@method('delete')
+											<button type="submit">
+												<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-800 hover:text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+													<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+												</svg>
+											</button>
+										</form>
+									</td>
+								</tr>
+							@endforeach	        
+						</tbody>
+					</table>
+                </div>
+            </div>
+        </div>
+    </div>
 
 	{{ $productos->appends(request()->input())->links() }} 
 

@@ -1,9 +1,7 @@
-@extends("../layouts.plantilla")
+@extends("../layouts.master")
 
-@section("cabecera")
-@endsection
+@section("body")
 
-@section("contenido")
 	<h2>Crear Rol</h2>
 
 	<a href="{{route('roles.index')}}">Regresar</a>
