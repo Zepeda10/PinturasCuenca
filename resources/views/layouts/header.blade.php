@@ -1,6 +1,6 @@
 <header class="flex justify-between items-center py-3 px-6 bg-white border-b-4 border-indigo-600">
     <div class="flex items-center">
-        <p class="text-lg mx-3">Panel de administración</p>
+        <p class="text-lg mx-3 font-normal">Panel de administración</p>
     </div>
 
       

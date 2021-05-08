@@ -27,12 +27,17 @@ table p{
     @apply text-gray-900;
 }
 
+
 .btn-agregar{
     @apply px-3 py-2 bg-yellow-600 rounded-md text-white font-medium tracking-wide hover:bg-yellow-500 ml-3 hover:text-white;
 }
 
 .btn-buscar{
   @apply justify-center px-3 py-1.5 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+}
+
+.btn-enviar{
+  @apply px-3 py-2 bg-yellow-600 rounded-md text-white font-medium tracking-wide hover:bg-yellow-500 ml-3 hover:text-white;
 }
 
 .titulo{

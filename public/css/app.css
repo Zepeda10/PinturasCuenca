@@ -42330,6 +42330,37 @@ table p{
   color: rgba(255, 255, 255, var(--tw-text-opacity));
 }
 
+.btn-enviar{
+  --tw-bg-opacity: 1;
+  background-color: rgba(217, 119, 6, var(--tw-bg-opacity));
+}
+
+.btn-enviar:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgba(245, 158, 11, var(--tw-bg-opacity));
+}
+
+.btn-enviar {
+  border-radius: 0.375rem;
+  font-weight: 500;
+  margin-left: 0.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+.btn-enviar:hover {
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+.btn-enviar {
+  letter-spacing: 0.025em;
+}
+
 .titulo{
   font-weight: 600;
   font-size: 1.875rem;
