@@ -1,5 +1,7 @@
 @extends("../layouts.master")
 
+@section('title', 'Proveedores')
+
 @section("body")
 
 	<h2 class="titulo">Editar Proveedor</h2>

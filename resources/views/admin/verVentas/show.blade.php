@@ -1,5 +1,7 @@
 @extends("../layouts.master")
 
+@section('title', 'Ver ventas')
+
 @section("body")
 	
 	<h2 class="titulo"> Detalle de venta </h2>

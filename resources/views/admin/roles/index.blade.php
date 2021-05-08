@@ -1,5 +1,7 @@
 @extends("../layouts.master")
 
+@section('title', 'Roles')
+
 @section("body")
 <h2 class="titulo">Roles</h2>
 

@@ -1,5 +1,7 @@
 @extends("../layouts.master")
 
+@section('title', 'Productos')
+
 @section("body")
 
 	<h2 class="titulo">Registrar Producto</h2>

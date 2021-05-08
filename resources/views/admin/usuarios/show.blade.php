@@ -1,5 +1,7 @@
 @extends("../layouts.master")
 
+@section('title', 'Usuarios')
+
 @section("body")
 	
 	<h2>Show Usuario</h2>

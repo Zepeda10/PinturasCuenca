@@ -1,5 +1,7 @@
 @extends("../layouts.master")
 
+@section('title', 'Inicio')
+
 @section("body")
 	
 	@if (session('status'))

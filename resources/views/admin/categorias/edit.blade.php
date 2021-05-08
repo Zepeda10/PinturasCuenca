@@ -1,5 +1,7 @@
 @extends("../layouts.master")
 
+@section('title', 'Categorías')
+
 @section("body")
 
 	<h2 class="titulo">Editar Categoría</h2>
