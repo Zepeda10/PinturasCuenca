@@ -66,8 +66,19 @@
 									<td>{{$producto->precio_compra}}</td>
 									<td>{{$producto->precio_venta}}</td>
 									<td>{{$producto->iva}}</td>
-									<td>{{$producto->categoria->categoria}}</td>
+									
+									@if ($producto->categoria)
+										<td>{{$producto->categoria->categoria}}</td>
+									@else
+										<td>Sin categoría</td>
+									@endif
+
+									@if ($producto->proveedor)
 									<td>{{$producto->proveedor->nombre}}</td>
+									@else
+										<td>Sin proveedor</td>
+									@endif
+									
 									@if ($producto->imagen)
 										<td><img class="rounded-sm w-20 h-12" src="/images/{{$producto->imagen->url}}" width="100"/></td> 
 									@else

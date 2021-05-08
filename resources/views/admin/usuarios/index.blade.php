@@ -44,7 +44,11 @@
                                         </div>
                                     </div>
                                 </td>
-									<td>{{$usuario->role->rol}}</td>
+									@if ($usuario->role)
+										<td>{{$usuario->role->rol}}</td>
+									@else
+										<td>Sin rol</td>
+									@endif
 									
 									<td>
 										<a href="{{route('usuarios.edit', $usuario->id)}}">

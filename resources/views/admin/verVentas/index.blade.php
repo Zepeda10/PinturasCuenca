@@ -48,7 +48,13 @@
 									<td>{{$venta->id}}</td>
 									<td>{{$venta->folio}}</td>
 									<td>{{$venta->total}}</td>
+
+									@if ($venta->user)
 									<td>{{$venta->user->usuario}}</td>
+									@else
+										<td>Sin usuario</td>
+									@endif
+									
 									<td>{{$venta->created_at}}</td>
 									<td>
 										<a href="{{route('ventas.show', $venta->id)}}">

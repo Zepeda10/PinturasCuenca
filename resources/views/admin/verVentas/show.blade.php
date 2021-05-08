@@ -25,7 +25,11 @@
 
 		<div class="fixed grid grid-cols-1 gap-2 my-11 mx-0.5 text-base">
 			<p><span class="font-semibold">Folio:</span> {{ $venta->folio }}</p>
-			<p><span class="font-semibold">Usuario:</span> {{ $venta->user->usuario }}</p>
+			@if ($venta->user)
+				<p><span class="font-semibold">Usuario:</span> {{$venta->user->usuario}}</p>
+			@else
+				<p>Sin usuario</tp>
+			@endif
 			<p><span class="font-semibold">Fecha:</span> {{ $venta->created_at }}</p>
 		</div>
 	</div>
