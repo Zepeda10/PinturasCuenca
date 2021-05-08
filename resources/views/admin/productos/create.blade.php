@@ -2,81 +2,116 @@
 
 @section("body")
 
-	<h2>Crear Producto</h2>
+	<h2 class="titulo">Registrar Producto</h2>
 
-	<a href="{{route('productos.index')}}">Regresar</a>
+	<div class="mb-4 mt-2">
+		<a class="flex items-center text-green-700 hover:text-green-600 hover:no-underline" href="{{route('productos.index')}}">
+			<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+				<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" />
+			</svg>
+			<span class="-my-5 mx-1 font-semibold">Regresar</span>
+		</a> 
+	</div>
 
-	<form action="{{route('productos.store')}}" method="post" enctype="multipart/form-data" accept-charset="utf-8">
-		@csrf
-		<label  for="nombre">Producto:<label>
-		<input type="text" name="nombre" placeholder="Producto" value="{{ old('nombre') }}">
-		@error('nombre')
-			<small>*{{ $message }}</small>
-		@enderror 
+	<div class="mt-3">
+		<form action="{{route('productos.store')}}" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+			@csrf
+			<div class="grid grid-cols-3 gap-4">
+				<div class="col-start-1 col-end-2">
+					<label for="nombre" class="block text-sm font-medium text-gray-700">Producto</label>
+					<input type="text" name="nombre" placeholder="Producto" value="{{ old('nombre') }}">
+					@error('nombre')
+						<small class="text-red-600 mt-9 ml-1">*{{ $message }}</small>
+					@enderror 
+				</div>
 
-		<label  for="cod_barras">Código de Barras:<label>
-		<input type="text" name="cod_barras" placeholder="Código de Barras" value="{{ old('cod_barras') }}">
-		@error('cod_barras')
-			<small>*{{ $message }}</small>
-		@enderror
+				<div class="col-start-2 col-end-2">
+				    <label for="cod_barras" class="block text-sm font-medium text-gray-700">Código de Barras</label>
+					<input type="text" name="cod_barras" placeholder="Código de Barras" value="{{ old('cod_barras') }}">
+					@error('cod_barras')
+						<small class="text-red-600 mt-9 ml-1">*{{ $message }}</small>
+					@enderror
+				</div>
+				
+				<div class="col-start-1 col-end-2">
+					<label for="descripcion" class="block text-sm font-medium text-gray-700">Descripción</label>
+					<textarea name="descripcion" placeholder="Descripción">{{ old('descripcion') }}</textarea>
+					@error('descripcion')
+						<small class="text-red-600 mt-9 ml-1">*{{ $message }}</small>
+					@enderror
+				</div>
 
-		<label for="descripcion">Descripción:<label>
-		<textarea name="descripcion" placeholder="Descripción">{{ old('descripcion') }}</textarea>
-		@error('descripcion')
-			<small>*{{ $message }}</small>
-		@enderror
+				<div class="col-start-2 col-end-2">
+					<label class="block text-sm font-medium text-gray-700" for="stock">Stock</label>
+					<input type="text" name="stock" placeholder="Stock" value="{{ old('stock') }}">
+					@error('stock')
+						<small class="text-red-600 mt-9 ml-1">*{{ $message }}</small>
+					@enderror
+				</div>
 
-		<label  for="stock">Stock:<label>
-		<input type="text" name="stock" placeholder="Stock" value="{{ old('stock') }}">
-		@error('stock')
-			<small>*{{ $message }}</small>
-		@enderror
+				<div class="col-start-1 col-end-2">
+					<label class="block text-sm font-medium text-gray-700" for="precio_compra">Precio de Compra</label>
+					<input type="text" name="precio_compra" placeholder="Precio de Compra" value="{{ old('precio_compra') }}">
+					@error('precio_compra')
+						<small class="text-red-600 mt-9 ml-1">*{{ $message }}</small>
+					@enderror
+				</div>
 
-		<label  for="precio_compra">Precio de Compra:<label>
-		<input type="text" name="precio_compra" placeholder="Precio de Compra" value="{{ old('precio_compra') }}">
-		@error('precio_compra')
-			<small>*{{ $message }}</small>
-		@enderror
+				<div class="col-start-2 col-end-2">
+					<label class="block text-sm font-medium text-gray-700" for="precio_venta">Precio de Venta</label>
+					<input type="text" name="precio_venta" placeholder="Precio de Venta" value="{{ old('precio_venta') }}">
+					@error('precio_venta')
+						<small class="text-red-600 mt-9 ml-1">*{{ $message }}</small>
+					@enderror
+				</div>
 
-		<label  for="precio_venta">Precio de Venta:<label>
-		<input type="text" name="precio_venta" placeholder="Precio de Venta" value="{{ old('precio_venta') }}">
-		@error('precio_venta')
-			<small>*{{ $message }}</small>
-		@enderror
+				<div class="col-start-1 col-end-2">
+					<label class="block text-sm font-medium text-gray-700" for="imagen_id">Imagen</label>
+					<input name="imagen_id" type="file">
+				</div>
 
-		<label  for="iva">IVA:<label>
-		<input type="text" name="iva" placeholder="IVA" value="{{ old('iva') }}">
-		@error('iva')
-			<small>*{{ $message }}</small>
-		@enderror
+				<div class="col-start-2 col-end-2">
+					<label class="block text-sm font-medium text-gray-700" for="iva">IVA</label>
+					<input type="text" name="iva" placeholder="IVA" value="{{ old('iva') }}">
+					@error('iva')
+						<small class="text-red-600 mt-9 ml-1">*{{ $message }}</small>
+					@enderror
+				</div>
 
-		<label  for="categoria_id">Categoría:<label>
-		<select name="categoria_id">
-			@foreach($categorias as $categoria)
-			<option value="{{ $categoria->id }}">{{ $categoria->categoria }}</option>}
-			@endforeach
-		</select>
+				<div class="col-start-1 col-end-2">
+					<label class="block text-sm font-medium text-gray-700" for="categoria_id">Categoría</label>
+					<select name="categoria_id">
+						@foreach($categorias as $categoria)
+						<option value="{{ $categoria->id }}">{{ $categoria->categoria }}</option>
+						@endforeach
+					</select>
 
-		@error('categoria_id')
-			<small>*{{ $message }}</small>
-		@enderror
+					@error('categoria_id')
+						<small class="text-red-600 mt-9 ml-1">*{{ $message }}</small>
+					@enderror
+				</div>
 
-		<label  for="proveedor_id">Proveedor:<label>
-		<select name="proveedor_id">
-			@foreach($proveedores as $proveedor)
-			<option value="{{ $proveedor->id }}">{{ $proveedor->nombre }}</option>}
-			@endforeach
-		</select>
+				<div class="col-start-2 col-end-2">
+					<label class="block text-sm font-medium text-gray-700" for="proveedor_id">Proveedor</label>
+					<select name="proveedor_id">
+						@foreach($proveedores as $proveedor)
+						<option value="{{ $proveedor->id }}">{{ $proveedor->nombre }}</option>
+						@endforeach
+					</select>
 
-		@error('proveedor_id')
-			<small>*{{ $message }}</small>
-		@enderror
-		
-		<label  for="imagen_id">Imagen:<label>
-		<input name="imagen_id" type="file">
-		
-		<input type="submit" name="enviar" value="Añadir">
-	</form>
+					@error('proveedor_id')
+						<small class="text-red-600 mt-9 ml-1">*{{ $message }}</small>
+					@enderror
+				</div>
+				
+				<div class="col-start-2 ml-2.5">	
+					<div class="col-start-2 ml-80">
+						<button type="submit" class="btn-enviar px-3" name="enviar">Añadir</button>
+					</div>
+				</div>	
+			</div>
+		</form>
+	</div>
 
 @endsection
 
