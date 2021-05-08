@@ -133,7 +133,7 @@ class UsuarioController extends Controller
         $usuario = User::findOrFail($id);
         $usuario->delete();
 
-        return redirect()->route('usuarios.index');
+        return redirect()->route('usuarios.index')->with('msg-eliminar','ok');
     }
 
     public function search(Request $request)

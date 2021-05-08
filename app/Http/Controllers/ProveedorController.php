@@ -125,6 +125,6 @@ class ProveedorController extends Controller
         $proveedor = Proveedor::findOrFail($id);
         $proveedor->delete();
 
-        return redirect()->route('proveedores.index');
+        return redirect()->route('proveedores.index')->with('msg-eliminar','ok');
     }
 }

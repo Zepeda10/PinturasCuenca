@@ -180,7 +180,7 @@ class ProductoController extends Controller
         $producto = Producto::findOrFail($id);
         $producto->delete();
 
-        return redirect()->route('productos.index'); 
+        return redirect()->route('productos.index')->with('msg-eliminar','ok'); 
     } 
 
     public function buscarProducto($codigo){

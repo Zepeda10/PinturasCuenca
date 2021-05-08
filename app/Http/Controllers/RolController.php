@@ -101,6 +101,6 @@ class RolController extends Controller
         $rol = Role::findOrFail($id);
         $rol->delete();
 
-        return redirect()->route('roles.index');
+        return redirect()->route('roles.index')->with('msg-eliminar','ok');
     }
 }

@@ -13,8 +13,9 @@
         <script src="{{ asset('js/app.js') }}" defer></script> 
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+        <link rel="shortcut icon" href="/images/logo2.png" />
+
         <title>Pinturas | @yield('title')</title>
-        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
                   
     </head>
     <body>
