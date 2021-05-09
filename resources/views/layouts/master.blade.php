@@ -50,7 +50,7 @@
 
 @endif
 
- @if (Auth::user()->role_id == 2)
+ @if (Auth::user()->role_id == 2) 
     <script>window.location = "/ventas";</script>
  @endif
 

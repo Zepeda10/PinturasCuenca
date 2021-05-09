@@ -4,13 +4,13 @@
 
 @section("body")
 
-@if(session('msg-eliminar') == 'ok' )
+@if(session('msg-alert') == 'eliminado' || session('msg-alert') == 'actualizado' || session('msg-alert') == 'agregado')
 	<div class="px-6 py-3 border-2 border-green-400 rounded relative mb-2 -mt-7 bg-green-100 text-green-500">
 		<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 flex float-left mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
 		</svg>
 		<span class="inline-block align-middle mr-8">
-			¡Registro <b>eliminado</b> exitósamente!
+			¡Registro <b>{{session('msg-alert')}}</b> exitósamente!
 		</span>
 		<button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-3 mr-6 outline-none focus:outline-none" onclick="closeAlert(event)">
 			<span>×</span>
@@ -54,7 +54,7 @@
 							@foreach($usuarios as $usuario)
 								<tr>
 									<td>{{$usuario->id}}</td>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+									<td class="px-4 py-4 border-b border-gray-200 bg-white text-sm">
                                     <div class="flex items-center">
                                         <div class="flex-shrink-0 w-11 h-11">
 											@if ($usuario->imagen)
@@ -69,9 +69,9 @@
                                     </div>
                                 </td>
 									@if ($usuario->role)
-										<td>{{$usuario->role->rol}}</td>
+										<td class="px-4 py-4 border-b border-gray-200 bg-white text-sm">{{$usuario->role->rol}}</td>
 									@else
-										<td class="bg-white text-sm">
+										<td class="px-4 py-4 border-b border-gray-200 bg-white text-sm">
 											<span class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
 												<span aria-hidden class="absolute inset-0 bg-red-200 opacity-50 rounded-full"></span>
 												<span class="relative">Sin rol</span>
@@ -79,7 +79,7 @@
 										</td>
 									@endif
 									
-									<td>
+									<td class="px-4 py-4 border-b border-gray-200 bg-white text-sm">
 										<a href="{{route('usuarios.edit', $usuario->id)}}">
 											<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-700 hover:text-green-500" viewBox="0 0 20 20" fill="currentColor">
 												<path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
@@ -87,7 +87,7 @@
 											</svg>
 										</a>
 									</td>
-									<td>
+									<td class="px-4 py-4 border-b border-gray-200 bg-white text-sm">
 										<form action="{{route('usuarios.destroy',$usuario)}}" method="post" accept-charset="utf-8" class="form-eliminar">
 											@csrf
 											@method('delete')

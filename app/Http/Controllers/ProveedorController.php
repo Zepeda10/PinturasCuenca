@@ -63,7 +63,7 @@ class ProveedorController extends Controller
         $proveedor->telefono = $request->telefono;
         $proveedor->save();
 
-        return redirect()->route('proveedores.index');
+        return redirect()->route('proveedores.index')->with('msg-alert','agregado');
     }
 
     /**
@@ -111,7 +111,7 @@ class ProveedorController extends Controller
         echo $proveedor;
         $proveedor->update($request->all());
 
-        return redirect()->route('proveedores.index');
+        return redirect()->route('proveedores.index')->with('msg-alert','actualizado');
     }
 
     /**
@@ -125,6 +125,6 @@ class ProveedorController extends Controller
         $proveedor = Proveedor::findOrFail($id);
         $proveedor->delete();
 
-        return redirect()->route('proveedores.index')->with('msg-eliminar','ok');
+        return redirect()->route('proveedores.index')->with('msg-alert','eliminado');
     }
 }

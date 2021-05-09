@@ -61,7 +61,7 @@ class UsuarioController extends Controller
         User::create($entrada);
 
 
-        return redirect()->route('usuarios.index');
+        return redirect()->route('usuarios.index')->with('msg-alert','agregado');
     }
 
     /**
@@ -118,7 +118,7 @@ class UsuarioController extends Controller
         $usuario->update($entrada);
 
         
-        return redirect()->route('usuarios.index');
+        return redirect()->route('usuarios.index')->with('msg-alert','actualizado');
 
     }
 
@@ -133,7 +133,7 @@ class UsuarioController extends Controller
         $usuario = User::findOrFail($id);
         $usuario->delete();
 
-        return redirect()->route('usuarios.index')->with('msg-eliminar','ok');
+        return redirect()->route('usuarios.index')->with('msg-alert','eliminado');
     }
 
     public function search(Request $request)

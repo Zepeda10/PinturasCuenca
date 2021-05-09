@@ -4,13 +4,13 @@
 
 @section("body")
 
-@if(session('msg-eliminar') == 'ok' )
+@if(session('msg-alert') == 'eliminado' || session('msg-alert') == 'actualizado' || session('msg-alert') == 'agregado')
 	<div class="px-6 py-3 border-2 border-green-400 rounded relative mb-2 -mt-7 bg-green-100 text-green-500">
 		<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 flex float-left mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
 		</svg>
 		<span class="inline-block align-middle mr-8">
-			¡Registro <b>eliminado</b> exitósamente!
+			¡Registro <b>{{session('msg-alert')}}</b> exitósamente!
 		</span>
 		<button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-3 mr-6 outline-none focus:outline-none" onclick="closeAlert(event)">
 			<span>×</span>
@@ -56,17 +56,27 @@
 										</a>
 									</td>
 
-									<td class="">
-										<form class="form-eliminar" action="{{route('roles.destroy',$rol)}}" method="post" accept-charset="utf-8">
-											@csrf
-											@method('delete')
-											<button type="submit">
-												<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-800 hover:text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-													<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-												</svg>			
-											</button>
-										</form>
+									@if($rol->id == 1 || $rol->id == 2)
+									<td class='has-tooltip'>
+										<svg xmlns="http://www.w3.org/2000/svg" tooltip="message" class="h-6 w-6 text-blue-800 hover:text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+										</svg>
 									</td>
+									@else
+										<td>
+											<form class="form-eliminar" action="{{route('roles.destroy',$rol)}}" method="post" accept-charset="utf-8">
+												@csrf
+												@method('delete')
+												<button type="submit">
+													<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-800 hover:text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+														<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+													</svg>			
+												</button>
+											</form>
+										</td>
+									@endif
+
+									
 								</tr>
 							@endforeach	  
                         </tbody>

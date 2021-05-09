@@ -44,7 +44,7 @@ class RolController extends Controller
         $rol->rol = $request->rol;
         $rol->save();
 
-        return redirect()->route('roles.index');
+        return redirect()->route('roles.index')->with('msg-alert','agregado');
     }
 
     /**
@@ -87,7 +87,7 @@ class RolController extends Controller
         echo $rol;
         $rol->update($request->all());
 
-        return redirect()->route('roles.index');
+        return redirect()->route('roles.index')->with('msg-alert','actualizado');
     }
 
     /**
@@ -101,6 +101,6 @@ class RolController extends Controller
         $rol = Role::findOrFail($id);
         $rol->delete();
 
-        return redirect()->route('roles.index')->with('msg-eliminar','ok');
+        return redirect()->route('roles.index')->with('msg-alert','eliminado');
     }
 }

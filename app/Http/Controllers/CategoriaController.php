@@ -44,7 +44,7 @@ class CategoriaController extends Controller
         $categoria->categoria = $request->categoria;
         $categoria->save();
 
-        return redirect()->route('categorias.index');
+        return redirect()->route('categorias.index')->with('msg-alert','agregado');
     }
 
     /**
@@ -87,7 +87,7 @@ class CategoriaController extends Controller
         echo $categoria;
         $categoria->update($request->all());
 
-        return redirect()->route('categorias.index');
+        return redirect()->route('categorias.index')->with('msg-alert','actualizado');
     }
 
     /**
@@ -101,6 +101,6 @@ class CategoriaController extends Controller
         $categoria = Categoria::findOrFail($id);
         $categoria->delete();
 
-        return redirect()->route('categorias.index')->with('msg-eliminar','ok');
+        return redirect()->route('categorias.index')->with('msg-alert','eliminado');
     }
 }
