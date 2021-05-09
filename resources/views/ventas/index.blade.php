@@ -19,6 +19,48 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
 </head>
+
+<style>
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content/Box */
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto; /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%; /* Could be more or less, depending on screen size */
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+
+
 <body>
 	<div id="app">
         <div class="container">      
@@ -95,7 +137,7 @@
             <label>Total</label>
             <input type="text" name="total" id="total" placeholder="Total" value="0.00" readonly>
 
-            <button type="button" name="completar_compra" id="completar_compra">Completar venta</button>
+            <button type="button" name="completar_compra" id="completar_compra">Vender</button>
 
         </form>
 
@@ -104,20 +146,80 @@
              <button type="submit" name="cancelar_venta" id="cancelar_venta">Cancelar venta</button>
         </form>
 
+            <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                
+                <label for="total-modal">Total</label>
+                <input type="text" name="total-modal" id="total-modal" value="0.00" readonly>
+
+                <label for="pago">Pago recibido</label>
+                <input type="text" name="pago" id="pago">
+
+                <label for="cambio">Cambio</label>
+                <input type="text" name="cambio" id="cambio" value="0.00" readonly>
+                <span id="display"></span>
+
+                <button id="vender-modal">Completar venta</button>
+            </div>
+
+        </div>
+
 
     </div>
 
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+    
 
     <script>
+
        $(document).ready(function(){
+            // Get the modal
+            var modal = document.getElementById("myModal");
+
+            // Get the button that opens the modal
+            var btn = document.getElementById("myBtn");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            var cambio = 0;
+
+
             $("#completar_compra").click(function(){
                 let nFila = $("#tbl_venta tr").length;
 
                 if(nFila < 2){ //significa que no hay datos, solo está el encabezado de la tabla
                     alert("No hay productos en área de venta");
                 }else{
-                    $("#frmVender").submit();
+
+                    // When the user clicks on the button, open the modal
+                    modal.style.display = "block";
+
+                    // When the user clicks on <span> (x), close the modal
+                    span.onclick = function() {
+                        modal.style.display = "none";
+                    }
+
+                    // When the user clicks anywhere outside of the modal, close it
+                    window.onclick = function(event) {
+                        if (event.target == modal) {
+                            modal.style.display = "none";
+                        }
+                    }
+
+                    $('#pago').keyup(function () {
+                        cambio =  $(this).val() - $("#total-modal").val();
+                        $('#cambio').val(cambio.toFixed(2));
+                    });
+                                                    
+                    $("#vender-modal").click(function(){
+                        $("#frmVender").submit();
+                    });  
+                    
                 }
 
             });
@@ -191,7 +293,8 @@
                                     if(resultado.error==''){
                                         $("#tbl_venta tbody").empty();
                                         $("#tbl_venta tbody").append(resultado.datos);
-                                        $("#total").val(resultado.total);                                    
+                                        $("#total").val(resultado.total);  
+                                        $("#total-modal").val(resultado.total);                                         
                                         $("#producto_id").val('');
                                         $("#cod_barras").val('');
                                         $("#producto").val('');                          
