@@ -15,10 +15,18 @@ class UsuarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {       
-        $usuarios = User::paginate(5); 
-        return view("admin.usuarios.index",compact("usuarios"));
+        //$usuarios = User::paginate(5); 
+        //return view("admin.usuarios.index",compact("usuarios"));
+        if($request){
+            $buscar = trim($request->get('buscar'));
+            $usuarios = User::where('usuario', 'LIKE', '%'.$buscar.'%')
+                        ->orderBy('id','asc')
+                        ->paginate(2);
+
+            return view("admin.usuarios.index",compact("usuarios","buscar"));
+        }
         
     }
  

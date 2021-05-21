@@ -1,3 +1,5 @@
+
+
 @extends("../layouts.master")
 
 @section('title', 'Inicio')
@@ -14,7 +16,11 @@
                
         @else
 
-    		<h1>Bienvenido, {{Auth::user()->usuario}}</h1>
+            <div id="fondo" class=" sm:px-8 py-4 overflow-x-auto">
+                <div id="logoInicio" class=" sm:px-8 py-4 overflow-x-auto">
+                    <img src="/images/logoPin.png" alt="">
+                </div>
+            </div>
 
 @endsection
 

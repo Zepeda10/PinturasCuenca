@@ -21,15 +21,18 @@
 	<h2 class="titulo">Usuarios</h2>
 
 	<div class="mt-3">
-		<label for="buscar" class="block text-sm font-medium text-gray-700">Buscar</label>	
-		<div class="grid grid-cols-6 gap-6">
-			<div class="col-span-6 sm:col-span-2">
-				<input type="text" id="autocomplete-search" placeholder="Nombre, Rol">
+		<label for="buscar" class="block text-sm font-medium text-gray-700">Buscar</label>
+		<form action="{{route('usuarios.index',$buscar)}}" method="get" accept-charset="utf-8">
+			<div class="grid grid-cols-6 gap-6">
+				<div class="col-span-6 sm:col-span-2">
+					<input type="text" name="buscar" placeholder="Usuario">
+				</div>
+
+				<div class="col-span-6 sm:col-span-1">
+					<button type="submit" class="btn-buscar">Buscar</button>
+				</div>			
 			</div>
-			<div class="col-span-6 sm:col-span-1">
-				<button type="submit" class="btn-buscar">Buscar</button>
-			</div>
-		</div>			
+		</form>
 	</div>
 
 	<div class="mt-4 -ml-3">   
@@ -115,25 +118,6 @@
 
 	<script>
 			
-		$("#autocomplete-search").easyAutocomplete({
-		    url: function(search) {
-		        return "{{route('usuarios.search')}}?search=" + search;
-		    },
-		 
-		   //getValue: "usuario",
-		   getValue: function(element) {
-        	return element.usuario +" - "+ element.rol;
-    	   }, 
-	  
-		    list: {
-		        onChooseEvent: function() {
-		            var selectedUser = $("#autocomplete-search").getSelectedItemData();
-					console.log(selectedUser);
-		           window.location = "{{url('admin/usuarios')}}" + "/" + selectedUser.id;
-		        }
-		    }
-		});
-
 		
 		function closeAlert(event){
 			let element = event.target;

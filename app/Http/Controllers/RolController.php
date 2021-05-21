@@ -28,24 +28,6 @@ class RolController extends Controller
         return view("admin.roles.create");
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'rol' => 'required|max:30|unique:roles'
-        ]);
-
-        $rol = new Role();
-        $rol->rol = $request->rol;
-        $rol->save();
-
-        return redirect()->route('roles.index')->with('msg-alert','agregado');
-    }
 
     /**
      * Display the specified resource.
@@ -90,17 +72,4 @@ class RolController extends Controller
         return redirect()->route('roles.index')->with('msg-alert','actualizado');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $rol = Role::findOrFail($id);
-        $rol->delete();
-
-        return redirect()->route('roles.index')->with('msg-alert','eliminado');
-    }
 }

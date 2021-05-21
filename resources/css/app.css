@@ -65,5 +65,70 @@ table p{
     background: #718096;
   }
 
+  #fondo{
+    background-image: url("fondoInicio.jpg");
+    height: 91.1%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 69px;
+
+  }
+
+  #logoInicio{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 110px;
+    margin-left: 250px;
+  }
+
+  .to {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .to .tooltiptext {
+    visibility: hidden;
+    width: 180px;
+    background-color: rgb(30, 64, 175);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    left: 105%;
+  }
+  
+  .to:hover .tooltiptext {
+    visibility: visible;
+  }
+
+
+
+  .btn-agVenta{
+    @apply px-3 py-2 bg-blue-900 rounded-md text-white font-medium tracking-wide hover:bg-blue-500 ml-3 hover:text-white;
+  }
+  
+  
+  .btn-vender{
+    @apply px-3 py-2 bg-red-700 rounded-md text-white font-medium tracking-wide hover:bg-red-500 ml-3 hover:text-white;
+  }
+
+  .btn-cancelarVenta{
+    @apply px-3 py-2 bg-gray-700 rounded-md text-white font-medium tracking-wide hover:bg-gray-500 ml-3 hover:text-white;
+  }
+
+  .opc-eliminar{
+    @apply bg-transparent text-red-700 border-none;
+  }
+
+
+
 
 

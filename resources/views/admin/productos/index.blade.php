@@ -63,7 +63,6 @@
 								<th class="w-14">Stock</th>
 								<th class="w-32">Precio Compra</th>
 								<th class="w-32">Precio Venta</th>
-								<th class="w-14">IVA</th>
 								<th class="w-40">Categoría</th>
 								<th class="w-40">Proveedor</th>
 								<th class="w-32">Imagen</th>
@@ -81,7 +80,6 @@
 									<td>{{$producto->stock}}</td>
 									<td>{{$producto->precio_compra}}</td>
 									<td>{{$producto->precio_venta}}</td>
-									<td>{{$producto->iva}}</td>
 									
 									@if ($producto->categoria)
 										<td>{{$producto->categoria->categoria}}</td>

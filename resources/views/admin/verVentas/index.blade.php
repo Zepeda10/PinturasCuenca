@@ -81,7 +81,7 @@
 					</table>
                 </div>
 				<div class="mt-3">
-					{{ $ventas->appends(request()->input())->links() }} 
+					{{ $ventas->onEachSide(5)->appends(request()->input())->links() }} 
 				</div>
             </div>
         </div>

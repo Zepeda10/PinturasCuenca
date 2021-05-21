@@ -1,3 +1,5 @@
+
+
 @extends('layouts.app')
 
 @section('content')
@@ -9,8 +11,10 @@
         </div>
     @endif
 
-    <h1>Bienvenido, {{Auth::user()->usuario}}</h1>
-           
 
+        <h1>Bienvenido, {{Auth::user()->usuario}}</h1>
+
+
+           
 </div>
 @endsection

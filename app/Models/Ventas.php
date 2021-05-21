@@ -12,7 +12,8 @@ class Ventas extends Model
 
     protected $fillable = ['folio',
     						'total',
-    						'user_id']; 
+    						'user_id',
+                        'created_at']; 
 
     //Relación uno a muchos inversa
     public function user(){

@@ -17,108 +17,97 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <link href="{{ asset('css/ventas.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 </head>
-
-<style>
-    /* The Modal (background) */
-    .modal {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    }
-
-    /* Modal Content/Box */
-    .modal-content {
-        background-color: #fefefe;
-        margin: 15% auto; /* 15% from the top and centered */
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%; /* Could be more or less, depending on screen size */
-    }
-
-    /* The Close Button */
-    .close {
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-    }
-</style>
-
-
-<body>
-	<div id="app">
-        <div class="container">      
-             @guest
+        @guest
                      <p>No estás logueado</p>    
                @else
-                             
-                    <a id="navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        {{ Auth::user()->usuario }}
-                    </a>
-      
-                    <a href="{{ route('logout') }}"
+
+<header class="flex justify-between items-center py-3 px-6 bg-blue-900 border-b-4">
+    <div class="flex items-center">
+        <p class="text-lg mx-3 font-normal text-gray-100">Ventas</p>
+    </div>
+    
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+        @csrf
+    </form>
+    
+    <div class="flex items-center">
+
+                @if (Auth::user()->role_id == 1)
+                    <a href="{{route('admin.welcome')}}"  class="text-gray-100 text-lg mx-5 hover:no-underline hover:text-white">Ir a panel</a>
+                 @endif
+
+        <p class="text-lg mx-3 text-gray-100"> {{ Auth::user()->usuario }}</p>
+
+        <div x-data="{ dropdownOpen: false }"  class="relative">
+            <button @click="dropdownOpen = ! dropdownOpen" class="relative block h-8 w-8 rounded-full overflow-hidden shadow focus:outline-none"> 
+            @if (Auth::user()->imagen)  
+                <img class="h-full w-full object-cover" src="/images/{{Auth::user()->imagen->url}}" alt="Your avatar">
+            @else
+				<img class="w-full h-full object-cover" src="/images/generico.jpg" alt="" />
+			@endif                                       
+            </button>
+
+            <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10"></div>
+
+            <div x-show="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-10">
+                <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 hover:no-underline" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
+                                {{ __('Cerrar Sesión') }}
                     </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-
-                 @if (Auth::user()->role_id == 1)
-                    <a href="{{route('admin.welcome')}}">Admin</a>
-                 @endif
-                                                                     
+            </div>
         </div>
     </div>
+</header>
 
-    <div class="contenido">
-        <h2>VENTAS</h2>
-        <h1>Bienvenido, {{Auth::user()->usuario}}</h1>
+<body>
 
+    <div class="container mx-auto px-6 py-8 pr-10">
+       
         <form action="{{route('ventas.guardar')}}" method="post" id="frmVender" accept-charset="utf-8">
             @csrf
             <input id="producto_id" type="hidden" name="producto_id">
             <input id="user_id" type="hidden" name="user_id" value="{{Auth::user()->id}}">
             <input id="folio" type="hidden" name="folio" value="<?php echo $folio; ?>">
 
-            <label>Código de barras</label>
-            <input type="text" name="cod_barras" id="cod_barras" placeholder="Código de barras" onkeyup="buscarProducto(event, this, this.value)" autfocus required>
+            <div class="grid grid-cols-3 gap-4">
+				<div class="col-start-1 col-end-2">
+                    <label>Código de barras</label>
+                    <input type="text" name="cod_barras" id="cod_barras" placeholder="Código de barras" onkeyup="buscarProducto(event, this, this.value)" autfocus required>
+                        <small id="resultado_error" class="text-red-600 mt-9 ml-1"></small>
+				</div>
 
-            <label id="resultado_error"></label>
+                <div class="col-start-2 col-end-3">
+                    <label>Nombre del producto</label>
+                    <input type="text" name="producto" id="producto" placeholder="Nombre" readonly required>
+                </div>
 
-            <label>Nombre del producto</label>
-            <input type="text" name="producto" id="producto" placeholder="Nombre" readonly required>
+                <div class="col-start-3 col-end-3">
+                    <label>Cantidad</label>
+                    <input type="text" name="cantidad" id="cantidad" placeholder="Cantidad" required>
+				</div>
 
-            <label>Cantidad</label>
-            <input type="text" name="cantidad" id="cantidad" placeholder="Cantidad" required>
+                <div class="col-start-1 col-end-2">
+                    <label>Precio</label>
+                    <input type="text" name="precio_venta" id="precio_venta" placeholder="Precio" readonly required>
+                </div>
 
-            <label>Precio</label>
-            <input type="text" name="precio_venta" id="precio_venta" placeholder="Precio" readonly required>
+                <div class="col-start-2 col-end-3">
+                    <label>Subtotal</label>
+                    <input type="text" name="subtotal" id="subtotal" placeholder="Subtotal" readonly required>
+                </div>
 
-            <label>Subtotal</label>
-            <input type="text" name="subtotal" id="subtotal" placeholder="Subtotal" readonly required>
+                <div class="col-start-3 col-end-3 mt-1">	
+                    <button type="button" id="agregar_producto" name="agregar_producto" class="btn-agVenta px-3 mt-4" onclick="agregaProducto(producto_id.value,'<?php echo $folio; ?>',cantidad.value)">Agregar producto</button>
+			    </div>	
+            </div>
+            
 
-            <button type="button" id="agregar_producto" name="agregar_producto" onclick="agregaProducto(producto_id.value,'<?php echo $folio; ?>',cantidad.value)">Agregar producto</button>
-
-            <table border="1" id="tbl_venta">
+            <table id="tbl_venta" class="mt-20 ">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -134,16 +123,20 @@
                 </tbody>
             </table>
 
-            <label>Total</label>
-            <input type="text" name="total" id="total" placeholder="Total" value="0.00" readonly>
+            <div class="grid grid-cols-5 gap-4">
+				<div class="col-start-1 col-end-2">
+                    <label>Total</label>
+                    <input type="text" name="total" id="total" placeholder="Total" value="0.00" readonly>
+                </div>
+            </div>
 
-            <button type="button" name="completar_compra" id="completar_compra">Vender</button>
+            <button type="button" name="completar_compra" id="completar_compra" class="btn-vender mx-0  px-3 mt-4 float-left">Vender</button>
 
         </form>
 
         <form action="{{route('ventas.cancelar')}}" method="post" accept-charset="utf-8">
          @csrf    
-             <button type="submit" name="cancelar_venta" id="cancelar_venta">Cancelar venta</button>
+             <button type="submit" name="cancelar_venta" id="cancelar_venta" class="btn-cancelarVenta px-3 mt-4 float-left">Cancelar venta</button>
         </form>
 
             <!-- The Modal -->
@@ -152,18 +145,29 @@
             <!-- Modal content -->
             <div class="modal-content">
                 <span class="close">&times;</span>
-                
-                <label for="total-modal">Total</label>
-                <input type="text" name="total-modal" id="total-modal" value="0.00" readonly>
 
-                <label for="pago">Pago recibido</label>
-                <input type="text" name="pago" id="pago">
+                <div class="grid grid-cols-4 gap-4">
+				    <div class="col-start-2 col-end-2">
+                        <label for="total-modal">Total</label>
+                        <input type="text" name="total-modal" id="total-modal" value="0.00" readonly>
+                    </div>
 
-                <label for="cambio">Cambio</label>
-                <input type="text" name="cambio" id="cambio" value="0.00" readonly>
+                    <div class="col-start-2 col-end-2">
+                        <label for="pago">Pago recibido</label>
+                        <input type="text" name="pago" id="pago">
+                    </div>
+
+                    <div class="col-start-2 col-end-2">
+                        <label for="cambio">Cambio</label>
+                        <input type="text" name="cambio" id="cambio" value="0.00" readonly>
+                    </div>
                 <span id="display"></span>
 
-                <button id="vender-modal">Completar venta</button>
+                <div class="col-start-3 col-end-2">
+                    <button id="vender-modal" class="btn-vender mx-0 px-3 mt-4">Completar venta</button>
+                </div>
+
+                
             </div>
 
         </div>

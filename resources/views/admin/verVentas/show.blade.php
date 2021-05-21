@@ -49,7 +49,7 @@
 						<tbody>
 							@foreach($detalle as $d)
 								<tr>
-									<td>{{$d->id}}</td>
+									<td>{{$d->producto_id}}</td>
 									<td>{{$d->nombre}}</td>
 									<td>{{$d->cantidad}}</td>
 									<td>{{$d->precio_individual}}</td>		

@@ -42434,6 +42434,148 @@ table p{
   background: #718096;
 }
 
+#fondo{
+  background-image: url(/images/fondoInicio.jpg?1e89c54f044858967e467da2034baa89);
+  height: 91.1%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 69px;
+}
+
+#logoInicio{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 110px;
+  margin-left: 250px;
+}
+
+.to {
+  position: relative;
+  display: inline-block;
+}
+
+.to .tooltiptext {
+  visibility: hidden;
+  width: 180px;
+  background-color: rgb(30, 64, 175);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 105%;
+}
+
+.to:hover .tooltiptext {
+  visibility: visible;
+}
+
+.btn-agVenta{
+  --tw-bg-opacity: 1;
+  background-color: rgba(30, 58, 138, var(--tw-bg-opacity));
+}
+
+.btn-agVenta:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
+}
+
+.btn-agVenta {
+  border-radius: 0.375rem;
+  font-weight: 500;
+  margin-left: 0.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+.btn-agVenta:hover {
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+.btn-agVenta {
+  letter-spacing: 0.025em;
+}
+
+.btn-vender{
+  --tw-bg-opacity: 1;
+  background-color: rgba(185, 28, 28, var(--tw-bg-opacity));
+}
+
+.btn-vender:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgba(239, 68, 68, var(--tw-bg-opacity));
+}
+
+.btn-vender {
+  border-radius: 0.375rem;
+  font-weight: 500;
+  margin-left: 0.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+.btn-vender:hover {
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+.btn-vender {
+  letter-spacing: 0.025em;
+}
+
+.btn-cancelarVenta{
+  --tw-bg-opacity: 1;
+  background-color: rgba(55, 65, 81, var(--tw-bg-opacity));
+}
+
+.btn-cancelarVenta:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgba(107, 114, 128, var(--tw-bg-opacity));
+}
+
+.btn-cancelarVenta {
+  border-radius: 0.375rem;
+  font-weight: 500;
+  margin-left: 0.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+.btn-cancelarVenta:hover {
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+.btn-cancelarVenta {
+  letter-spacing: 0.025em;
+}
+
+.opc-eliminar{
+  background-color: transparent;
+  border-style: none;
+  --tw-text-opacity: 1;
+  color: rgba(185, 28, 28, var(--tw-text-opacity));
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
@@ -195168,6 +195310,8 @@ table p{
             animation: bounce 1s infinite;
   }
 }
+
+
 
 
 

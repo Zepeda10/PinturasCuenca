@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Ventas;
+use App\Models\Producto;
 use App\Models\DetalleVenta;
 use Illuminate\Support\Facades\DB;
 
@@ -22,14 +23,15 @@ class VerVentasController extends Controller
         $user = trim($request->get('user_id'));
 
         if((!$folio and !$user) || ($folio and $user) ){
-            $ventas = Ventas::paginate(3);
+            $ventas = Ventas::orderBy('id','desc')->paginate(3);
 
         }else if($folio and $user==0){
             $ventas = Ventas::where('folio', 'LIKE', '%'.$folio.'%')
+                    ->orderBy('id','desc')
                     ->paginate(3);
         }else if(!$folio and $user!=0){
             $ventas = Ventas::where('user_id', 'LIKE', '%'.$user.'%')
-                    ->orderBy('id','asc')
+                    ->orderBy('id','desc')
                     ->paginate(3);
         }
         
