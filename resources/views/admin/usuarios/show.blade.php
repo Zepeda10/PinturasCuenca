@@ -15,6 +15,7 @@
 				<th>Id</th>
 				<th>Usuario</th>
 				<th>Tipo</th>
+				<th>Email</th>
 				<th>Foto</th>
 				<th>Editar</th>
 				<th>Eliminar</th> 
@@ -25,6 +26,7 @@
 					<td>{{$usuario->id}}</td>
 					<td>{{$usuario->usuario}}</td>
 					<td>{{$usuario->role->rol}}</td>
+					<td>{{$usuario->email}}</td>
 					@if ($usuario->imagen)
 						<td><img src="/images/{{$usuario->imagen->url}}" width="100"/></td> 
 					@else

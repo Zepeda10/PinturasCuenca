@@ -13,7 +13,7 @@
         <script src="{{ asset('js/app.js') }}" defer></script> 
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-        <link rel="shortcut icon" href="/images/logo2.png" />
+        <link rel="shortcut icon" href="/images/log.gif" />
 
         <title>Pinturas | @yield('title')</title>
                   

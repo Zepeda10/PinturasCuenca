@@ -18,7 +18,7 @@
 
             <div id="fondo" class=" sm:px-8 py-4 overflow-x-auto">
                 <div id="logoInicio" class=" sm:px-8 py-4 overflow-x-auto">
-                    <img src="/images/logoPin.png" alt="">
+                    <img src="/images/registro.gif" alt="">
                 </div>
             </div>
 

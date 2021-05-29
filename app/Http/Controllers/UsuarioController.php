@@ -23,7 +23,7 @@ class UsuarioController extends Controller
             $buscar = trim($request->get('buscar'));
             $usuarios = User::where('usuario', 'LIKE', '%'.$buscar.'%')
                         ->orderBy('id','asc')
-                        ->paginate(2);
+                        ->paginate(5);
 
             return view("admin.usuarios.index",compact("usuarios","buscar"));
         }
@@ -51,7 +51,8 @@ class UsuarioController extends Controller
     {
         $request->validate([
             'usuario' => 'required|max:20|unique:users',
-            'password' => 'required'
+            'password' => 'required',
+            'email' => 'required|email|unique:users'
         ]);
 
         $entrada = $request->all();
@@ -107,7 +108,8 @@ class UsuarioController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'usuario' => 'required|max:20|unique:users,usuario,'.$id
+            'usuario' => 'required|max:20|unique:users,usuario,'.$id,
+            'email' => 'required|email|unique:users,email,'.$id,
         ]);
         
         $usuario = User::findOrFail($id);
@@ -139,6 +141,8 @@ class UsuarioController extends Controller
     public function destroy($id)
     {
         $usuario = User::findOrFail($id);
+        $imagen = Imagen::findOrFail($usuario->imagen_id);
+        $imagen->delete();
         $usuario->delete();
 
         return redirect()->route('usuarios.index')->with('msg-alert','eliminado');

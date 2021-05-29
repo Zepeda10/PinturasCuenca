@@ -5,7 +5,7 @@
 @section("body")
 
 @if(session('msg-alert') == 'eliminado' || session('msg-alert') == 'actualizado' || session('msg-alert') == 'agregado')
-	<div class="px-6 py-3 border-2 border-green-400 rounded relative mb-2 -mt-7 bg-green-100 text-green-500">
+	<div class="px-6 py-3 border-1 border-green-400 rounded relative mb-2 -mt-7 bg-green-100 text-green-500">
 		<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 flex float-left mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
 		</svg>
@@ -49,6 +49,7 @@
 								<th>Id</th>
 								<th>Usuario</th>
 								<th>Tipo</th>
+								<th>Email</th>
 								<th>Editar</th>
 								<th>Eliminar</th> 
 							</tr>
@@ -81,7 +82,11 @@
 											</span>
 										</td>
 									@endif
-									
+
+									<td>{{$usuario->email}}</td>
+
+									@if (Auth::user()->id == 2 and $usuario->id == 2)
+
 									<td class="px-4 py-4 border-b border-gray-200 bg-white text-sm">
 										<a href="{{route('usuarios.edit', $usuario->id)}}">
 											<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-700 hover:text-green-500" viewBox="0 0 20 20" fill="currentColor">
@@ -90,6 +95,42 @@
 											</svg>
 										</a>
 									</td>
+
+									@elseif (Auth::user()->id !=2 and $usuario->id == 2)
+									
+									<td class="px-4 py-4 border-b border-gray-200 bg-white text-sm">
+									<div class="to">
+										<span class="tooltiptext2">No tiene permisos para esta acción</span>
+										<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-800 hover:text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+										</svg>
+										</div>
+									</td>
+
+									@else
+
+									<td class="px-4 py-4 border-b border-gray-200 bg-white text-sm">
+										<a href="{{route('usuarios.edit', $usuario->id)}}">
+											<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-700 hover:text-green-500" viewBox="0 0 20 20" fill="currentColor">
+												<path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+												<path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+											</svg>
+										</a>
+									</td>
+
+									@endif
+
+									@if($usuario->id == 2)
+									<td>
+										<div class="to">
+										<span class="tooltiptext2">Admin Default</span>
+											<svg xmlns="http://www.w3.org/2000/svg"  class="h-6 w-6 text-blue-800 hover:text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+											</svg>
+										</div>									
+									</td>
+
+									@else
 									<td class="px-4 py-4 border-b border-gray-200 bg-white text-sm">
 										<form action="{{route('usuarios.destroy',$usuario)}}" method="post" accept-charset="utf-8" class="form-eliminar">
 											@csrf
@@ -101,6 +142,12 @@
 											</button>
 										</form>
 									</td>
+										
+									@endif
+
+									
+
+									
 								</tr>
 							@endforeach	        
 						</tbody>

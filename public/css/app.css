@@ -42476,6 +42476,26 @@ table p{
   visibility: visible;
 }
 
+.tooltiptext2 {
+  visibility: hidden;
+  width: 180px;
+  background-color: rgb(30, 64, 175);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  /* Position the tooltip */
+  position: absolute;
+  width: 120px;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.to:hover .tooltiptext2 {
+  visibility: visible;
+}
+
 .btn-agVenta{
   --tw-bg-opacity: 1;
   background-color: rgba(30, 58, 138, var(--tw-bg-opacity));

@@ -26,20 +26,20 @@ class ProductoController extends Controller
                 $productos = Producto::where('nombre', 'LIKE', '%'.$buscar.'%')
                         ->orWhere('cod_barras', 'LIKE', '%'.$buscar.'%')
                         ->orderBy('id','asc')
-                        ->paginate(2);
+                        ->paginate(10);
                 return view("admin.productos.index",compact("productos","categorias","buscar"));
 
             }else if($buscar and $categoria){
                 $productos = Producto::where([['nombre', 'LIKE', '%'.$buscar.'%'], ['categoria_id', 'LIKE', '%'.$categoria.'%']])
                         ->orWhere([['cod_barras', 'LIKE', '%'.$buscar.'%'],['categoria_id', 'LIKE', '%'.$categoria.'%']])
                         ->orderBy('id','asc')
-                        ->paginate(2);
+                        ->paginate(10);
                 return view("admin.productos.index",compact("productos","categorias","buscar"));
  
             }else if(!$buscar and $categoria){
                 $productos = Producto::where('categoria_id', 'LIKE', '%'.$categoria.'%')
                         ->orderBy('id','asc')
-                        ->paginate(2);
+                        ->paginate(10);
                 return view("admin.productos.index",compact("productos","categorias","buscar"));
 
             }else if(!$buscar and !$categoria){
@@ -47,7 +47,7 @@ class ProductoController extends Controller
                 $productos = Producto::where('nombre', 'LIKE', '%'.$buscar.'%')
                         ->orWhere('cod_barras', 'LIKE', '%'.$buscar.'%')
                         ->orderBy('id','asc')
-                        ->paginate(2);
+                        ->paginate(10);
                 return view("admin.productos.index",compact("productos","categorias","buscar"));
             }
 
@@ -178,6 +178,8 @@ class ProductoController extends Controller
     public function destroy($id)
     {
         $producto = Producto::findOrFail($id);
+        $imagen = Imagen::findOrFail($producto->imagen_id);
+        $imagen->delete();
         $producto->delete();
 
         return redirect()->route('productos.index')->with('msg-alert','eliminado'); 

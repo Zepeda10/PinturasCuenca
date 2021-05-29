@@ -19,7 +19,7 @@ class ProveedorController extends Controller
             $proveedores = Proveedor::where('nombre', 'LIKE', '%'.$buscar.'%')
                         ->orWhere('rfc', 'LIKE', '%'.$buscar.'%')
                         ->orderBy('id','asc')
-                        ->paginate(2);
+                        ->paginate(10);
 
             return view("admin.proveedores.index",compact("proveedores","buscar"));
         }

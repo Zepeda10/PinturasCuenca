@@ -36,6 +36,14 @@
 						<small class="text-red-600 mt-9 ml-1">*{{ $message }}</small>
 					@enderror
 				</div>
+
+				<div class="col-start-1 col-end-2">
+					<label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+					<input type="text" name="email" placeholder="Email" value="{{ old('email') }}">
+					@error('email')
+						<small class="text-red-600 mt-9 ml-1">*{{ $message }}</small>
+					@enderror
+				</div>
 				
 
 				<div class="col-start-1 col-end-2">

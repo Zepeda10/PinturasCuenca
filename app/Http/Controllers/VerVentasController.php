@@ -23,7 +23,7 @@ class VerVentasController extends Controller
         $user = trim($request->get('user_id'));
 
         if((!$folio and !$user) || ($folio and $user) ){
-            $ventas = Ventas::orderBy('id','desc')->paginate(3);
+            $ventas = Ventas::orderBy('id','desc')->paginate(10);
 
         }else if($folio and $user==0){
             $ventas = Ventas::where('folio', 'LIKE', '%'.$folio.'%')
