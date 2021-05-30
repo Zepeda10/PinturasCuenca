@@ -85,7 +85,7 @@
 
 									<td>{{$usuario->email}}</td>
 
-									@if (Auth::user()->id == 2 and $usuario->id == 2)
+									@if (Auth::user()->id == 1 and $usuario->id == 1)
 
 									<td class="px-4 py-4 border-b border-gray-200 bg-white text-sm">
 										<a href="{{route('usuarios.edit', $usuario->id)}}">
@@ -96,7 +96,7 @@
 										</a>
 									</td>
 
-									@elseif (Auth::user()->id !=2 and $usuario->id == 2)
+									@elseif (Auth::user()->id !=1 and $usuario->id == 1)
 									
 									<td class="px-4 py-4 border-b border-gray-200 bg-white text-sm">
 									<div class="to">
@@ -120,7 +120,7 @@
 
 									@endif
 
-									@if($usuario->id == 2)
+									@if($usuario->id == 1)
 									<td>
 										<div class="to">
 										<span class="tooltiptext2">Admin Default</span>

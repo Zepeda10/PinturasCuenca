@@ -43,7 +43,7 @@
 					<label for="imagen_id" class="block text-sm font-medium text-gray-700">Foto</label>
 					<input name="imagen_id" type="file">
 				</div>
-				@if($usuario->id != 2)
+				@if($usuario->id != 1)
 				<div class="col-start-1">
 					<label for="role_id" class="block text-sm font-medium text-gray-700">Tipo</label>
 					<select name="role_id">
@@ -53,6 +53,7 @@
 					</select>
 				</div>
 				@endif
+				
 			
 				<div class="col-start-1 -ml-3">	
 					<div class="col-start-1 ml-80">
