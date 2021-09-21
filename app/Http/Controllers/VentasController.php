@@ -31,7 +31,7 @@ class VentasController extends Controller
         $resultadoId = Ventas::insertaVenta($folio,$total,$id_usuario,$fecha); 
       
 
-        if($resultadoId){//si lac función retorna un ID
+        if($resultadoId){//si la función retorna un ID
         	$resultadoCompra = TemporalVenta::getVentaAttribute($folio);
 
         	foreach ($resultadoCompra as $row) {

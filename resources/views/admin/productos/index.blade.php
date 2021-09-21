@@ -27,7 +27,7 @@
 				<div class="col-span-6 sm:col-span-2">
 					<input type="text" name="buscar" placeholder="Producto, Código de barras">
 				</div>
-
+ 
 				<div class="col-span-6 sm:col-span-1">
 					<select name="categoria_id" id="select_categoria_id">
 						<option value="0">Categoría</option>

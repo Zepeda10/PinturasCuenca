@@ -17,7 +17,7 @@ class ProductoController extends Controller
      */
     public function index(Request $request)
     {
-        if($request){
+        if($request){ 
             $categorias = Categoria::all();
             $buscar = trim($request->get('buscar'));
             $categoria = trim($request->get('categoria_id'));
